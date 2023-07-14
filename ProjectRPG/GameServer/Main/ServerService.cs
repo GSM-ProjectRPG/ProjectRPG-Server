@@ -17,7 +17,7 @@ namespace ProjectRPG
             IPEndPoint endPoint = new IPEndPoint(ipAddr, 9999);
 
             _listener.Init(endPoint, SessionManager.Instance.Generate);
-            Console.WriteLine("Server is running...");
+            Console.WriteLine("서버가 실행 중입니다...");
         }
     }
 }
