@@ -1,0 +1,11 @@
+syntax = "proto3";
+package Protocol;
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "Google.Protobuf.Protocol";
+
+enum MsgId
+{
+	S_CONNECTED_TO_SERVER = 0;
+}
+
+message S_ConnectedToServer { }
