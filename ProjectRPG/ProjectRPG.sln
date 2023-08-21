@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameServer", "GameServer\Ga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACore", "ACore\ACore.csproj", "{25EB9D82-62FF-4AC4-8431-888B1A508DF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketGenerator", "PacketGenerator\PacketGenerator.csproj", "{D675A312-50AC-4037-A2A1-81CCE38D2BDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketGenerator", "PacketGenerator\PacketGenerator.csproj", "{D675A312-50AC-4037-A2A1-81CCE38D2BDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{24B404C8-22EA-40C8-9A7E-54136C6A5DBD}"
+	ProjectSection(SolutionItems) = preProject
+		..\Common\protoc-3.12.3-win64\bin\Protocol.proto = ..\Common\protoc-3.12.3-win64\bin\Protocol.proto
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
