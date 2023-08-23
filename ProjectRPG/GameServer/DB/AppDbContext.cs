@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace GameServer.DB
+namespace ProjectRPG.DB
 {
     public class AppDbContext : DbContext
     {
