@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjectRPG
 {
-    internal class Program
+    public class Program
     {
         private static void Main()
         {
-            ServerService server = new ServerService();
-
+            var server = new ServerService();
             server.Start();
 
             while (true)

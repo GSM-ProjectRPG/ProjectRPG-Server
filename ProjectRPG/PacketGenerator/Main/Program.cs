@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace PacketGenerator
 {
@@ -27,15 +22,11 @@ namespace PacketGenerator
                     continue;
                 }
 
-                if (!startParsing)
-                    continue;
-
-                if (line.Contains("}"))
-                    break;
+                if (!startParsing) continue;
+                if (line.Contains('}')) break;
 
                 string[] names = line.Trim().Split(" =");
-                if (names.Length == 0)
-                    continue;
+                if (names.Length == 0) continue;
 
                 string name = names[0];
                 if (name.StartsWith("S_"))
@@ -47,7 +38,7 @@ namespace PacketGenerator
                         msgName += FirstCharToUpper(word);
 
                     string packetName = $"S_{msgName.Substring(1)}";
-                    _clientRegister += string.Format(PacketFormat.managerRegisterFormat, msgName, packetName);
+                    _clientRegister += string.Format(PacketFormat.ManagerRegisterFormat, msgName, packetName);
                 }
                 else if (name.StartsWith("C_"))
                 {
@@ -58,20 +49,19 @@ namespace PacketGenerator
                         msgName += FirstCharToUpper(word);
 
                     string packetName = $"C_{msgName.Substring(1)}";
-                    _serverRegister += string.Format(PacketFormat.managerRegisterFormat, msgName, packetName);
+                    _serverRegister += string.Format(PacketFormat.ManagerRegisterFormat, msgName, packetName);
                 }
             }
 
-            string clientManagerText = string.Format(PacketFormat.managerFormat, _clientRegister);
+            string clientManagerText = string.Format(PacketFormat.ManagerFormat, _clientRegister);
             File.WriteAllText("ClientPacketManager.cs", clientManagerText);
-            string serverManagerText = string.Format(PacketFormat.managerFormat, _serverRegister);
+            string serverManagerText = string.Format(PacketFormat.ManagerFormat, _serverRegister);
             File.WriteAllText("ServerPacketManager.cs", serverManagerText);
         }
 
         public static string FirstCharToUpper(string input)
         {
-            if (string.IsNullOrEmpty(input))
-                return "";
+            if (string.IsNullOrEmpty(input)) return "";
             return input[0].ToString().ToUpper() + input.Substring(1).ToLower();
         }
     }

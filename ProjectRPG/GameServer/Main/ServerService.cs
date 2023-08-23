@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using ACore;
@@ -8,7 +7,7 @@ namespace ProjectRPG
 {
     public class ServerService
     {
-        private Listener _listener = new Listener();
+        private readonly Listener _listener = new Listener();
 
         public void Start()
         {

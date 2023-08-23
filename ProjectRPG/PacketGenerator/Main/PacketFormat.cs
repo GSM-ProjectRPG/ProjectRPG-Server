@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PacketGenerator
+﻿namespace PacketGenerator
 {
     public class PacketFormat
     {
         // {0} 패킷 등록
-        public static string managerFormat =
+        public static readonly string ManagerFormat =
 @"using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ACore;
@@ -79,7 +73,7 @@ class PacketManager
 
         // {0} MsgId
         // {1} 패킷 이름
-        public static string managerRegisterFormat =
+        public static readonly string ManagerRegisterFormat =
 @"
 		_onRecv.Add((ushort)MsgId.{0}, MakePacket<{1}>);
 		_handler.Add((ushort)MsgId.{0}, PacketHandler.{1}Handler);";

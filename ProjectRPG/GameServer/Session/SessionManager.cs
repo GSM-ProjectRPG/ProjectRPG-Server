@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectRPG
 {
@@ -16,7 +13,7 @@ namespace ProjectRPG
 
         public List<ClientSession> GetSessions()
         {
-            List<ClientSession> sessions = new List<ClientSession>();
+            var sessions = new List<ClientSession>();
 
             lock (_lock)
             {
@@ -31,8 +28,7 @@ namespace ProjectRPG
             lock (_lock)
             {
                 int sessionId = ++_sessionId;
-                ClientSession session = new ClientSession();
-                session.SessionId = sessionId;
+                var session = new ClientSession() { SessionId = sessionId };
                 _sessions.Add(sessionId, session);
                 return session;
             }
