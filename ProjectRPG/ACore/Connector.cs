@@ -27,7 +27,7 @@ namespace ACore
 
 		private void RegisterConnect(SocketAsyncEventArgs args)
 		{
-			Socket socket = args.UserToken as Socket;
+            Socket socket = args.UserToken as Socket;
 			if (socket == null)
 				return;
 
@@ -45,16 +45,23 @@ namespace ACore
 
 		private void OnConnectCompleted(object sender, SocketAsyncEventArgs args)
 		{
-			if (args.SocketError == SocketError.Success)
+			try
 			{
-				Session session = _sessionFactory.Invoke();
-				session.Start(args.ConnectSocket);
-				session.OnConnected(args.RemoteEndPoint);
+				if (args.SocketError == SocketError.Success)
+				{
+					Session session = _sessionFactory.Invoke();
+					session.Start(args.ConnectSocket);
+					session.OnConnected(args.RemoteEndPoint);
+				}
+				else
+				{
+					Console.WriteLine($"OnConnectCompleted Fail: {args.SocketError}");
+				}
 			}
-			else
+			catch (Exception e)
 			{
-				Console.WriteLine($"OnConnectCompleted Fail: {args.SocketError}");
-			}
+                Console.WriteLine(e);
+            }
 		}
 	}
 }

@@ -44,16 +44,23 @@ namespace ACore
 
 		private void OnAcceptCompleted(object sender, SocketAsyncEventArgs args)
 		{
-			if (args.SocketError == SocketError.Success)
+			try
 			{
-				Session session = _sessionFactory.Invoke();
-				session.Start(args.AcceptSocket);
-				session.OnConnected(args.AcceptSocket.RemoteEndPoint);
+				if (args.SocketError == SocketError.Success)
+				{
+					Session session = _sessionFactory.Invoke();
+					session.Start(args.AcceptSocket);
+					session.OnConnected(args.AcceptSocket.RemoteEndPoint);
+				}
+				else
+				{
+					Console.WriteLine($"OnAcceptCompleted Failed {args.SocketError}");
+				}
 			}
-			else
+			catch (Exception e)
 			{
-				Console.WriteLine($"OnAcceptCompleted Failed {args.SocketError}");
-			}
+                Console.WriteLine(e);
+            }
 
 			RegisterAccept(args);
 		}
