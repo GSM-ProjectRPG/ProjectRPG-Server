@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading;
 using ACore;
-using ProjectRPG.Session;
 
 namespace ProjectRPG
 {
@@ -18,6 +19,23 @@ namespace ProjectRPG
 
             _listener.Init(endPoint, SessionManager.Instance.Generate);
             Console.WriteLine("서버가 실행 중입니다...");
+
+            // NetworkTask
+            {
+                var t = new Thread(NetworkTask) { Name = nameof(NetworkTask) };
+                t.Start();
+            }
+        }
+
+        public void NetworkTask()
+        {
+            while (true)
+            {
+                var sessions = SessionManager.Instance.GetSessions();
+                foreach (ClientSession session in sessions)
+                    session.FlushSend();
+                Thread.Sleep(0);
+            }
         }
     }
 }

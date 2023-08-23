@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectRPG.Session
+namespace ProjectRPG
 {
     public class SessionManager
     {
@@ -13,6 +13,18 @@ namespace ProjectRPG.Session
         private Dictionary<int, ClientSession> _sessions = new Dictionary<int, ClientSession>();
         private int _sessionId = 0;
         private readonly object _lock = new object();
+
+        public List<ClientSession> GetSessions()
+        {
+            List<ClientSession> sessions = new List<ClientSession>();
+
+            lock (_lock)
+            {
+                sessions = _sessions.Values.ToList();
+            }
+
+            return sessions;
+        }
 
         public ClientSession Generate()
         {
