@@ -1,8 +1,11 @@
+using AccountServer.DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SharedDB;
 
 namespace AccountServer
 {
@@ -23,6 +26,12 @@ namespace AccountServer
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
                 options.JsonSerializerOptions.DictionaryKeyPolicy = null;
             });
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<SharedDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SharedConnection")));
         }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
