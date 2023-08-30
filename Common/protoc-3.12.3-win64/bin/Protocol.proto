@@ -3,6 +3,92 @@ package Protocol;
 import "google/protobuf/timestamp.proto";
 option csharp_namespace = "Google.Protobuf.Protocol";
 
+/*------------------
+		Enum
+------------------*/
+
+enum EntityType
+{
+	NONE = 0;
+	PLAYER = 1;
+	MONSTER = 2;
+}
+
+enum EntityState
+{
+	IDLE = 0;
+	MOVE = 1;
+	SKILL = 2;
+	DEAD = 3;
+}
+
+enum SkillType
+{
+	SKILL_TYPE_NONE = 0;
+	SKILL_TYPE_MANUAL = 1;
+}
+
+enum ItemType
+{
+	ITEM_TYPE_NONE = 0;
+	ITEM_TYPE_WEAPON = 1;
+	ITEM_TYPE_CONSUMABLE = 2;
+	ITEM_TYPE_ACCESSORY = 3;
+}
+
+enum WeaponType
+{
+	WEAPON_TYPE_NONE = 0;
+	WEAPON_TYPE_SWORD = 1;
+	WEAPON_TYPE_WAND = 2;
+}
+
+enum ConsumableType
+{
+	CONSUMABLE_TYPE_NONE = 0;
+	CONSUMABLE_TYPE_POTION = 1;
+}
+
+/*--------------------
+		Define
+--------------------*/
+
+message Vector3
+{
+	float x = 1;
+	float y = 2;
+	float z = 3;
+}
+
+message TransformInfo
+{
+	Vector3 position = 1;
+	Vector3 rotation = 2;
+	Vector3 scale = 3;
+}
+
+message StatInfo
+{
+	int32 level = 1;
+	int32 hp = 2;
+	int32 maxHp = 3;
+	int32 atkPower = 4;
+	int32 speed = 5;
+	int32 totalExp = 6;
+}
+
+message EntityInfo
+{
+	int32 id = 1;
+	string name = 2;
+	EntityType type = 3;
+	TransformInfo transform = 4;
+}
+
+/*--------------------
+		Packet
+--------------------*/
+
 enum MsgId
 {
 	S_CONNECTED_TO_SERVER = 0;
