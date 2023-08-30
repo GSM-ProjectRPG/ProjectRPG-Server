@@ -70,25 +70,40 @@ namespace ProjectRPG.Data
         public int maxCount;
     }
 
+    public class AccessoryData : ItemData
+    {
+        public AccessoryType accessoryType;
+    }
+
     [Serializable]
     public class ItemLoader : ILoader<int, ItemData>
     {
         public List<WeaponData> weapons = new List<WeaponData>();
         public List<ConsumableData> consumables = new List<ConsumableData>();
+        public List<AccessoryData> accessories = new List<AccessoryData>();
 
         public Dictionary<int, ItemData> MakeDict()
         {
             var dict = new Dictionary<int, ItemData>();
-            foreach (ItemData item in weapons)
+
+            foreach (var item in weapons)
             {
                 item.itemType = ItemType.Weapon;
                 dict.Add(item.id, item);
             }
-            foreach (ItemData item in consumables)
+
+            foreach (var item in consumables)
             {
                 item.itemType = ItemType.Consumable;
                 dict.Add(item.id, item);
             }
+
+            foreach (var item in accessories)
+            {
+                item.itemType = ItemType.Accessory;
+                dict.Add(item.id, item);
+            }
+
             return dict;
         }
     }
