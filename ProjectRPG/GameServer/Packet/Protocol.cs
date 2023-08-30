@@ -74,19 +74,21 @@ namespace Google.Protobuf.Protocol {
             "EhQKEFdFQVBPTl9UWVBFX05PTkUQABIVChFXRUFQT05fVFlQRV9TV09SRBAB",
             "EhQKEFdFQVBPTl9UWVBFX1dBTkQQAipGCg5Db25zdW1hYmxlVHlwZRIYChRD",
             "T05TVU1BQkxFX1RZUEVfTk9ORRAAEhoKFkNPTlNVTUFCTEVfVFlQRV9QT1RJ",
-            "T04QASqOAwoFTXNnSWQSGQoVU19DT05ORUNURURfVE9fU0VSVkVSEAASCwoH",
-            "Q19MT0dJThABEgsKB1NfTE9HSU4QAhITCg9DX0NSRUFURV9QTEFZRVIQAxIT",
-            "Cg9TX0NSRUFURV9QTEFZRVIQBBIQCgxDX0VOVEVSX0dBTUUQBRIQCgxTX0VO",
-            "VEVSX0dBTUUQBhIQCgxTX0xFQVZFX0dBTUUQBxILCgdTX1NQQVdOEAgSDQoJ",
-            "U19ERVNQQVdOEAkSCgoGQ19NT1ZFEAoSCgoGU19NT1ZFEAsSCwoHQ19TS0lM",
-            "TBAMEgsKB1NfU0tJTEwQDRIPCgtTX0NIQU5HRV9IUBAOEgkKBVNfRElFEA8S",
-            "DwoLU19JVEVNX0xJU1QQEBIOCgpTX0FERF9JVEVNEBESEAoMQ19FUVVJUF9J",
-            "VEVNEBISEAoMU19FUVVJUF9JVEVNEBMSEQoNU19DSEFOR0VfU1RBVBAUEgoK",
-            "BkNfQ0hBVBAVEgoKBlNfQ0hBVBAWEgoKBlNfUElORxAXEgoKBkNfUElORxAY",
-            "QhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "T04QASpECg1BY2Nlc3NvcnlUeXBlEhcKE0FDQ0VTU09SWV9UWVBFX05PTkUQ",
+            "ABIaChZBQ0NFU1NPUllfVFlQRV9LRVlSSU5HEAEqjgMKBU1zZ0lkEhkKFVNf",
+            "Q09OTkVDVEVEX1RPX1NFUlZFUhAAEgsKB0NfTE9HSU4QARILCgdTX0xPR0lO",
+            "EAISEwoPQ19DUkVBVEVfUExBWUVSEAMSEwoPU19DUkVBVEVfUExBWUVSEAQS",
+            "EAoMQ19FTlRFUl9HQU1FEAUSEAoMU19FTlRFUl9HQU1FEAYSEAoMU19MRUFW",
+            "RV9HQU1FEAcSCwoHU19TUEFXThAIEg0KCVNfREVTUEFXThAJEgoKBkNfTU9W",
+            "RRAKEgoKBlNfTU9WRRALEgsKB0NfU0tJTEwQDBILCgdTX1NLSUxMEA0SDwoL",
+            "U19DSEFOR0VfSFAQDhIJCgVTX0RJRRAPEg8KC1NfSVRFTV9MSVNUEBASDgoK",
+            "U19BRERfSVRFTRAREhAKDENfRVFVSVBfSVRFTRASEhAKDFNfRVFVSVBfSVRF",
+            "TRATEhEKDVNfQ0hBTkdFX1NUQVQQFBIKCgZDX0NIQVQQFRIKCgZTX0NIQVQQ",
+            "FhIKCgZTX1BJTkcQFxIKCgZDX1BJTkcQGEIbqgIYR29vZ2xlLlByb3RvYnVm",
+            "LlByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.PlayerServerState), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.PlayerServerState), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.AccessoryType), typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Vector3), global::Google.Protobuf.Protocol.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.TransformInfo), global::Google.Protobuf.Protocol.TransformInfo.Parser, new[]{ "State", "Position", "Rotation", "Scale" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SkillInfo), global::Google.Protobuf.Protocol.SkillInfo.Parser, new[]{ "SkillId" }, null, null, null, null),
@@ -165,6 +167,11 @@ namespace Google.Protobuf.Protocol {
   public enum ConsumableType {
     [pbr::OriginalName("CONSUMABLE_TYPE_NONE")] None = 0,
     [pbr::OriginalName("CONSUMABLE_TYPE_POTION")] Potion = 1,
+  }
+
+  public enum AccessoryType {
+    [pbr::OriginalName("ACCESSORY_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ACCESSORY_TYPE_KEYRING")] Keyring = 1,
   }
 
   public enum MsgId {

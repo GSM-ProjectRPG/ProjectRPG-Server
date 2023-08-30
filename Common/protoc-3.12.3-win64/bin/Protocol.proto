@@ -56,6 +56,12 @@ enum ConsumableType
 	CONSUMABLE_TYPE_POTION = 1;
 }
 
+enum AccessoryType
+{
+	ACCESSORY_TYPE_NONE = 0;
+	ACCESSORY_TYPE_KEYRING = 1;
+}
+
 /*--------------------
 		Define
 --------------------*/
