@@ -48,5 +48,7 @@ namespace ProjectRPG.Game
 
             // TODO
         }
+
+        public virtual Entity GetBase() => this;
     }
 }
