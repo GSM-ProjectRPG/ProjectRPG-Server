@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ProjectRPG.Data;
 
 namespace ProjectRPG.DB
 {
@@ -11,13 +12,13 @@ namespace ProjectRPG.DB
 
         private static readonly ILoggerFactory _logger = LoggerFactory.Create(builder => builder.AddConsole());
 
-        private string _connectionString = @"";
+        private string _connectionString = @"Data Source=(localdb)\ProjectModels;Initial Catalog=ProjectRPG_GameDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder
-            //    .UseLoggerFactory(_logger)
-            //    .UseSqlServer(ConfigManager.Config == null ? _connectionString : ConfigManager.Config.connectionString);
+            optionsBuilder
+                //.UseLoggerFactory(_logger)
+                .UseSqlServer(ConfigManager.Config == null ? _connectionString : ConfigManager.Config.connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

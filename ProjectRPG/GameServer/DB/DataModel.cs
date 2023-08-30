@@ -6,7 +6,7 @@ namespace ProjectRPG.DB
     [Table("Account")]
     public class AccountDb
     {
-        public int AccountId { get; set; }
+        public int AccountDbId { get; set; }
         public string AccountName { get; set; }
         public ICollection<PlayerDb> Players { get; set; }
     }
@@ -14,7 +14,7 @@ namespace ProjectRPG.DB
     [Table("Player")]
     public class PlayerDb
     {
-        public int PlayerId { get; set; }
+        public int PlayerDbId { get; set; }
         public string PlayerName { get; set; }
 
         [ForeignKey("Account")]
