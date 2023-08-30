@@ -23,6 +23,22 @@ class PacketManager
 
 	public void Register()
 	{
+		_onRecv.Add((ushort)MsgId.CLogin, MakePacket<C_Login>);
+		_handler.Add((ushort)MsgId.CLogin, PacketHandler.C_LoginHandler);
+		_onRecv.Add((ushort)MsgId.CCreatePlayer, MakePacket<C_CreatePlayer>);
+		_handler.Add((ushort)MsgId.CCreatePlayer, PacketHandler.C_CreatePlayerHandler);
+		_onRecv.Add((ushort)MsgId.CEnterGame, MakePacket<C_EnterGame>);
+		_handler.Add((ushort)MsgId.CEnterGame, PacketHandler.C_EnterGameHandler);
+		_onRecv.Add((ushort)MsgId.CMove, MakePacket<C_Move>);
+		_handler.Add((ushort)MsgId.CMove, PacketHandler.C_MoveHandler);
+		_onRecv.Add((ushort)MsgId.CSkill, MakePacket<C_Skill>);
+		_handler.Add((ushort)MsgId.CSkill, PacketHandler.C_SkillHandler);
+		_onRecv.Add((ushort)MsgId.CEquipItem, MakePacket<C_EquipItem>);
+		_handler.Add((ushort)MsgId.CEquipItem, PacketHandler.C_EquipItemHandler);
+		_onRecv.Add((ushort)MsgId.CChat, MakePacket<C_Chat>);
+		_handler.Add((ushort)MsgId.CChat, PacketHandler.C_ChatHandler);
+		_onRecv.Add((ushort)MsgId.CPing, MakePacket<C_Ping>);
+		_handler.Add((ushort)MsgId.CPing, PacketHandler.C_PingHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)
