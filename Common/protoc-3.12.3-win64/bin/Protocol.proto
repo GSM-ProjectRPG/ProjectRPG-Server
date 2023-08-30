@@ -21,7 +21,7 @@ enum GameObjectType
 	MONSTER = 2;
 }
 
-enum EntityState
+enum CreatureState
 {
 	IDLE = 0;
 	MOVE = 1;
@@ -69,7 +69,7 @@ message Vector3
 
 message TransformInfo
 {
-	EntityState state = 1;
+	CreatureState state = 1;
 	Vector3 position = 2;
 	Vector3 rotation = 3;
 	Vector3 scale = 4;

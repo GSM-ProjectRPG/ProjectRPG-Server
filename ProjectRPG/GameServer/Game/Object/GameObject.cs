@@ -26,7 +26,7 @@ namespace ProjectRPG.Game
             set => Stat.Speed = value;
         }
 
-        public EntityState State
+        public CreatureState State
         {
             get => Transform.State;
             set => Transform.State = value;

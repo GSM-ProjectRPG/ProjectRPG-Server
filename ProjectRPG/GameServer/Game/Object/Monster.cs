@@ -22,7 +22,7 @@ namespace ProjectRPG.Game
             {
                 Stat.MergeFrom(monsterData.stat);
                 Stat.Hp = monsterData.stat.MaxHp;
-                State = EntityState.Idle;
+                State = CreatureState.Idle;
             }
         }
 
@@ -31,16 +31,16 @@ namespace ProjectRPG.Game
         {
             switch (State)
             {
-                case EntityState.Idle:
+                case CreatureState.Idle:
                     UpdateIdle();
                     break;
-                case EntityState.Move:
+                case CreatureState.Move:
                     UpdateMoving();
                     break;
-                case EntityState.Skill:
+                case CreatureState.Skill:
                     UpdateSkill();
                     break;
-                case EntityState.Dead:
+                case CreatureState.Dead:
                     UpdateDead();
                     break;
             }
