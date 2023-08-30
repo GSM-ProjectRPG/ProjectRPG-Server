@@ -15,5 +15,10 @@ namespace ProjectRPG.Game
         {
             Flush();
         }
+
+        public void EnterGame(GameObject gameObject, bool isRandomPos)
+        {
+
+        }
     }
 }

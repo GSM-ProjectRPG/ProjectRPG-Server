@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using Google.Protobuf.Protocol;
-using ACore;
-using ProjectRPG.DB;
+﻿using System.Linq;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using ACore;
+using Google.Protobuf.Protocol;
+using ProjectRPG.Game;
+using ProjectRPG.DB;
 
 namespace ProjectRPG
 {
@@ -77,6 +78,52 @@ namespace ProjectRPG
                     ServerState = PlayerServerState.Lobby;
                 }
             }
+        }
+
+        public void HandleEnterGame(C_EnterGame enterGamePacket)
+        {
+            if (ServerState != PlayerServerState.Lobby) return;
+
+            var playerInfo = LobbyPlayers.Find(p => p.Name == enterGamePacket.Name);
+            if (playerInfo == null) return;
+
+            MyPlayer = ObjectManager.Instance.Add<Player>();
+            MyPlayer.PlayerDbId = playerInfo.PlayerDbId;
+            MyPlayer.Info.Name = playerInfo.Name;
+            MyPlayer.Info.Transform.State = CreatureState.Idle;
+            MyPlayer.Stat.MergeFrom(playerInfo.Stat);
+            MyPlayer.Session = this;
+
+            var itemListPacket = new S_ItemList();
+
+            using (var db = new AppDbContext())
+            {
+                var items = db.Items
+                    .Where(i => i.OwnerDbId == playerInfo.PlayerDbId)
+                    .ToList();
+
+                foreach (var itemDb in items)
+                {
+                    var item = Item.MakeItem(itemDb);
+                    if (item != null)
+                    {
+                        MyPlayer.Inven.Add(item);
+                        var info = new ItemInfo();
+                        info.MergeFrom(item.Info);
+                        itemListPacket.Items.Add(info);
+                    }
+                }
+            }
+
+            Send(itemListPacket);
+
+            ServerState = PlayerServerState.Game;
+
+            GameLogic.Instance.Push(() =>
+            {
+                var room = GameLogic.Instance.FindRoom(1);
+                room.Push(room.EnterGame, MyPlayer, true);
+            });
         }
     }
 }
