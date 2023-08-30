@@ -22,6 +22,33 @@ enum EntityState
 	DEAD = 3;
 }
 
+enum SkillType
+{
+	SKILL_TYPE_NONE = 0;
+	SKILL_TYPE_MANUAL = 1;
+}
+
+enum ItemType
+{
+	ITEM_TYPE_NONE = 0;
+	ITEM_TYPE_WEAPON = 1;
+	ITEM_TYPE_CONSUMABLE = 2;
+	ITEM_TYPE_ACCESSORY = 3;
+}
+
+enum WeaponType
+{
+	WEAPON_TYPE_NONE = 0;
+	WEAPON_TYPE_SWORD = 1;
+	WEAPON_TYPE_WAND = 2;
+}
+
+enum ConsumableType
+{
+	CONSUMABLE_TYPE_NONE = 0;
+	CONSUMABLE_TYPE_POTION = 1;
+}
+
 /*--------------------
 		Define
 --------------------*/
