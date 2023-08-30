@@ -11,12 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketGenerator", "PacketGe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{24B404C8-22EA-40C8-9A7E-54136C6A5DBD}"
 	ProjectSection(SolutionItems) = preProject
+		GameServer\bin\Debug\net6.0\config.json = GameServer\bin\Debug\net6.0\config.json
 		..\Common\protoc-3.12.3-win64\bin\Protocol.proto = ..\Common\protoc-3.12.3-win64\bin\Protocol.proto
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedDB", "SharedDB\SharedDB.csproj", "{E2631AA0-B3FA-421E-8C63-417AE80D35E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountServer", "AccountServer\AccountServer.csproj", "{1533033B-5D2E-427A-9C3E-04B0276CB8FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountServer", "AccountServer\AccountServer.csproj", "{1533033B-5D2E-427A-9C3E-04B0276CB8FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
