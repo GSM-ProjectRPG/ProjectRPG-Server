@@ -7,7 +7,9 @@ public class PacketHandler
 {
     public static void C_LoginHandler(PacketSession session, IMessage packet)
     {
-        
+        var loginPacket = (C_Login)packet;
+        var clientSession = (ClientSession)session;
+        clientSession.HandleLogin(loginPacket);
     }
 
     public static void C_CreatePlayerHandler(PacketSession session, IMessage packet)
