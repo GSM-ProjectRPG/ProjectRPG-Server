@@ -62,29 +62,31 @@ namespace Google.Protobuf.Protocol {
             "U19DaGFuZ2VTdGF0EiAKBHN0YXQYASABKAsyEi5Qcm90b2NvbC5TdGF0SW5m",
             "byIZCgZDX0NoYXQSDwoHY29udGVudBgBIAEoCSIrCgZTX0NoYXQSEAoIb2Jq",
             "ZWN0SWQYASABKAUSDwoHY29udGVudBgCIAEoCSIICgZTX1BpbmciCAoGQ19Q",
-            "aW5nKjMKDkdhbWVPYmplY3RUeXBlEggKBE5PTkUQABIKCgZQTEFZRVIQARIL",
-            "CgdNT05TVEVSEAIqNgoLRW50aXR5U3RhdGUSCAoESURMRRAAEggKBE1PVkUQ",
-            "ARIJCgVTS0lMTBACEggKBERFQUQQAyo3CglTa2lsbFR5cGUSEwoPU0tJTExf",
-            "VFlQRV9OT05FEAASFQoRU0tJTExfVFlQRV9NQU5VQUwQASpnCghJdGVtVHlw",
-            "ZRISCg5JVEVNX1RZUEVfTk9ORRAAEhQKEElURU1fVFlQRV9XRUFQT04QARIY",
-            "ChRJVEVNX1RZUEVfQ09OU1VNQUJMRRACEhcKE0lURU1fVFlQRV9BQ0NFU1NP",
-            "UlkQAypPCgpXZWFwb25UeXBlEhQKEFdFQVBPTl9UWVBFX05PTkUQABIVChFX",
-            "RUFQT05fVFlQRV9TV09SRBABEhQKEFdFQVBPTl9UWVBFX1dBTkQQAipGCg5D",
-            "b25zdW1hYmxlVHlwZRIYChRDT05TVU1BQkxFX1RZUEVfTk9ORRAAEhoKFkNP",
-            "TlNVTUFCTEVfVFlQRV9QT1RJT04QASqOAwoFTXNnSWQSGQoVU19DT05ORUNU",
-            "RURfVE9fU0VSVkVSEAASCwoHQ19MT0dJThABEgsKB1NfTE9HSU4QAhITCg9D",
-            "X0NSRUFURV9QTEFZRVIQAxITCg9TX0NSRUFURV9QTEFZRVIQBBIQCgxDX0VO",
-            "VEVSX0dBTUUQBRIQCgxTX0VOVEVSX0dBTUUQBhIQCgxTX0xFQVZFX0dBTUUQ",
-            "BxILCgdTX1NQQVdOEAgSDQoJU19ERVNQQVdOEAkSCgoGQ19NT1ZFEAoSCgoG",
-            "U19NT1ZFEAsSCwoHQ19TS0lMTBAMEgsKB1NfU0tJTEwQDRIPCgtTX0NIQU5H",
-            "RV9IUBAOEgkKBVNfRElFEA8SDwoLU19JVEVNX0xJU1QQEBIOCgpTX0FERF9J",
-            "VEVNEBESEAoMQ19FUVVJUF9JVEVNEBISEAoMU19FUVVJUF9JVEVNEBMSEQoN",
-            "U19DSEFOR0VfU1RBVBAUEgoKBkNfQ0hBVBAVEgoKBlNfQ0hBVBAWEgoKBlNf",
-            "UElORxAXEgoKBkNfUElORxAYQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9j",
-            "b2xiBnByb3RvMw=="));
+            "aW5nKm8KEVBsYXllclNlcnZlclN0YXRlEh0KGVBMQVlFUl9TRVJWRVJfU1RB",
+            "VEVfTE9HSU4QABIdChlQTEFZRVJfU0VSVkVSX1NUQVRFX0xPQkJZEAESHAoY",
+            "UExBWUVSX1NFUlZFUl9TVEFURV9HQU1FEAIqMwoOR2FtZU9iamVjdFR5cGUS",
+            "CAoETk9ORRAAEgoKBlBMQVlFUhABEgsKB01PTlNURVIQAio2CgtFbnRpdHlT",
+            "dGF0ZRIICgRJRExFEAASCAoETU9WRRABEgkKBVNLSUxMEAISCAoEREVBRBAD",
+            "KjcKCVNraWxsVHlwZRITCg9TS0lMTF9UWVBFX05PTkUQABIVChFTS0lMTF9U",
+            "WVBFX01BTlVBTBABKmcKCEl0ZW1UeXBlEhIKDklURU1fVFlQRV9OT05FEAAS",
+            "FAoQSVRFTV9UWVBFX1dFQVBPThABEhgKFElURU1fVFlQRV9DT05TVU1BQkxF",
+            "EAISFwoTSVRFTV9UWVBFX0FDQ0VTU09SWRADKk8KCldlYXBvblR5cGUSFAoQ",
+            "V0VBUE9OX1RZUEVfTk9ORRAAEhUKEVdFQVBPTl9UWVBFX1NXT1JEEAESFAoQ",
+            "V0VBUE9OX1RZUEVfV0FORBACKkYKDkNvbnN1bWFibGVUeXBlEhgKFENPTlNV",
+            "TUFCTEVfVFlQRV9OT05FEAASGgoWQ09OU1VNQUJMRV9UWVBFX1BPVElPThAB",
+            "Ko4DCgVNc2dJZBIZChVTX0NPTk5FQ1RFRF9UT19TRVJWRVIQABILCgdDX0xP",
+            "R0lOEAESCwoHU19MT0dJThACEhMKD0NfQ1JFQVRFX1BMQVlFUhADEhMKD1Nf",
+            "Q1JFQVRFX1BMQVlFUhAEEhAKDENfRU5URVJfR0FNRRAFEhAKDFNfRU5URVJf",
+            "R0FNRRAGEhAKDFNfTEVBVkVfR0FNRRAHEgsKB1NfU1BBV04QCBINCglTX0RF",
+            "U1BBV04QCRIKCgZDX01PVkUQChIKCgZTX01PVkUQCxILCgdDX1NLSUxMEAwS",
+            "CwoHU19TS0lMTBANEg8KC1NfQ0hBTkdFX0hQEA4SCQoFU19ESUUQDxIPCgtT",
+            "X0lURU1fTElTVBAQEg4KClNfQUREX0lURU0QERIQCgxDX0VRVUlQX0lURU0Q",
+            "EhIQCgxTX0VRVUlQX0lURU0QExIRCg1TX0NIQU5HRV9TVEFUEBQSCgoGQ19D",
+            "SEFUEBUSCgoGU19DSEFUEBYSCgoGU19QSU5HEBcSCgoGQ19QSU5HEBhCG6oC",
+            "GEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.EntityState), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.PlayerServerState), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.EntityState), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Vector3), global::Google.Protobuf.Protocol.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.TransformInfo), global::Google.Protobuf.Protocol.TransformInfo.Parser, new[]{ "State", "Position", "Rotation", "Scale" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SkillInfo), global::Google.Protobuf.Protocol.SkillInfo.Parser, new[]{ "SkillId" }, null, null, null, null),
@@ -123,6 +125,12 @@ namespace Google.Protobuf.Protocol {
 
   }
   #region Enums
+  public enum PlayerServerState {
+    [pbr::OriginalName("PLAYER_SERVER_STATE_LOGIN")] Login = 0,
+    [pbr::OriginalName("PLAYER_SERVER_STATE_LOBBY")] Lobby = 1,
+    [pbr::OriginalName("PLAYER_SERVER_STATE_GAME")] Game = 2,
+  }
+
   public enum GameObjectType {
     [pbr::OriginalName("NONE")] None = 0,
     [pbr::OriginalName("PLAYER")] Player = 1,
