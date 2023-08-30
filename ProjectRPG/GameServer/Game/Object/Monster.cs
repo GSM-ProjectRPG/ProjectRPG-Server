@@ -5,13 +5,13 @@ using ProjectRPG.Job;
 
 namespace ProjectRPG.Game
 {
-    public class Monster : Entity
+    public class Monster : GameObject
     {
         public int TemplateId { get; set; }
 
         public Monster()
         {
-            Type = EntityType.Monster;
+            Type = GameObjectType.Monster;
         }
 
         public void Init(int templateId)
@@ -109,7 +109,7 @@ namespace ProjectRPG.Game
 
         }
 
-        public override void OnDead(Entity killer)
+        public override void OnDead(GameObject killer)
         {
             if (_job != null)
             {
@@ -119,13 +119,13 @@ namespace ProjectRPG.Game
 
             base.OnDead(killer);
 
-            var entity = killer.GetBase();
-            if (entity.Type == EntityType.Player)
+            var gameObject = killer.GetBase();
+            if (gameObject.Type == GameObjectType.Player)
             {
                 var reward = GetRandomReward();
                 if (reward != null)
                 {
-                    var player = (Player)entity;
+                    var player = (Player)gameObject;
                     // TODO : Reward DB Logic
                 }
             }

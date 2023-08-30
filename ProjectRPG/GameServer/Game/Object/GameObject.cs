@@ -3,12 +3,12 @@ using Google.Protobuf.Protocol;
 
 namespace ProjectRPG.Game
 {
-    public class Entity
+    public class GameObject
     {
-        public EntityInfo Info { get; set; } = new EntityInfo();
+        public GameObjectInfo Info { get; set; } = new GameObjectInfo();
         public int Id { get => Info.Id; set => Info.Id = value; }
 
-        public EntityType Type { get; protected set; } = EntityType.None;
+        public GameObjectType Type { get; protected set; } = GameObjectType.None;
         public TransformInfo Transform { get; private set; } = new TransformInfo();
         public StatInfo Stat { get; private set; } = new StatInfo();
 
@@ -32,9 +32,11 @@ namespace ProjectRPG.Game
             set => Transform.State = value;
         }
 
-        public Entity()
+        public GameObject()
         {
-
+            Info.Type = Type;
+            Info.Transform = Transform;
+            Info.Stat = Stat;
         }
 
         public virtual void Update()
@@ -42,13 +44,13 @@ namespace ProjectRPG.Game
 
         }
 
-        public virtual void OnDead(Entity killer)
+        public virtual void OnDead(GameObject killer)
         {
             if (CurrentRoom == null) return;
 
             // TODO
         }
 
-        public virtual Entity GetBase() => this;
+        public virtual GameObject GetBase() => this;
     }
 }

@@ -2,17 +2,17 @@
 
 namespace ProjectRPG.Game
 {
-    public class Player : Entity
+    public class Player : GameObject
     {
         public int PlayerDbId { get; set; }
         public ClientSession Session { get; set; }
 
         public Player()
         {
-            Type = EntityType.Player;
+            Type = GameObjectType.Player;
         }
 
-        public override void OnDead(Entity killer)
+        public override void OnDead(GameObject killer)
         {
             base.OnDead(killer);
         }

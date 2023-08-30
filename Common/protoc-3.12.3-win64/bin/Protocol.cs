@@ -32,29 +32,29 @@ namespace Google.Protobuf.Protocol {
             "LlZlY3RvcjMSIAoFc2NhbGUYBCABKAsyES5Qcm90b2NvbC5WZWN0b3IzImcK",
             "CFN0YXRJbmZvEg0KBWxldmVsGAEgASgFEgoKAmhwGAIgASgFEg0KBW1heEhw",
             "GAMgASgFEhAKCGF0a1Bvd2VyGAQgASgFEg0KBXNwZWVkGAUgASgCEhAKCHRv",
-            "dGFsRXhwGAYgASgFIpgBCgpFbnRpdHlJbmZvEgoKAmlkGAEgASgFEgwKBG5h",
-            "bWUYAiABKAkSIgoEdHlwZRgDIAEoDjIULlByb3RvY29sLkVudGl0eVR5cGUS",
-            "KgoJdHJhbnNmb3JtGAQgASgLMhcuUHJvdG9jb2wuVHJhbnNmb3JtSW5mbxIg",
-            "CgRzdGF0GAUgASgLMhIuUHJvdG9jb2wuU3RhdEluZm8iFQoTU19Db25uZWN0",
-            "ZWRUb1NlcnZlciovCgpFbnRpdHlUeXBlEggKBE5PTkUQABIKCgZQTEFZRVIQ",
-            "ARILCgdNT05TVEVSEAIqNgoLRW50aXR5U3RhdGUSCAoESURMRRAAEggKBE1P",
-            "VkUQARIJCgVTS0lMTBACEggKBERFQUQQAyo3CglTa2lsbFR5cGUSEwoPU0tJ",
-            "TExfVFlQRV9OT05FEAASFQoRU0tJTExfVFlQRV9NQU5VQUwQASpnCghJdGVt",
-            "VHlwZRISCg5JVEVNX1RZUEVfTk9ORRAAEhQKEElURU1fVFlQRV9XRUFQT04Q",
-            "ARIYChRJVEVNX1RZUEVfQ09OU1VNQUJMRRACEhcKE0lURU1fVFlQRV9BQ0NF",
-            "U1NPUlkQAypPCgpXZWFwb25UeXBlEhQKEFdFQVBPTl9UWVBFX05PTkUQABIV",
-            "ChFXRUFQT05fVFlQRV9TV09SRBABEhQKEFdFQVBPTl9UWVBFX1dBTkQQAipG",
-            "Cg5Db25zdW1hYmxlVHlwZRIYChRDT05TVU1BQkxFX1RZUEVfTk9ORRAAEhoK",
-            "FkNPTlNVTUFCTEVfVFlQRV9QT1RJT04QASoiCgVNc2dJZBIZChVTX0NPTk5F",
-            "Q1RFRF9UT19TRVJWRVIQAEIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29s",
-            "YgZwcm90bzM="));
+            "dGFsRXhwGAYgASgFIqABCg5HYW1lT2JqZWN0SW5mbxIKCgJpZBgBIAEoBRIM",
+            "CgRuYW1lGAIgASgJEiYKBHR5cGUYAyABKA4yGC5Qcm90b2NvbC5HYW1lT2Jq",
+            "ZWN0VHlwZRIqCgl0cmFuc2Zvcm0YBCABKAsyFy5Qcm90b2NvbC5UcmFuc2Zv",
+            "cm1JbmZvEiAKBHN0YXQYBSABKAsyEi5Qcm90b2NvbC5TdGF0SW5mbyIVChNT",
+            "X0Nvbm5lY3RlZFRvU2VydmVyKjMKDkdhbWVPYmplY3RUeXBlEggKBE5PTkUQ",
+            "ABIKCgZQTEFZRVIQARILCgdNT05TVEVSEAIqNgoLRW50aXR5U3RhdGUSCAoE",
+            "SURMRRAAEggKBE1PVkUQARIJCgVTS0lMTBACEggKBERFQUQQAyo3CglTa2ls",
+            "bFR5cGUSEwoPU0tJTExfVFlQRV9OT05FEAASFQoRU0tJTExfVFlQRV9NQU5V",
+            "QUwQASpnCghJdGVtVHlwZRISCg5JVEVNX1RZUEVfTk9ORRAAEhQKEElURU1f",
+            "VFlQRV9XRUFQT04QARIYChRJVEVNX1RZUEVfQ09OU1VNQUJMRRACEhcKE0lU",
+            "RU1fVFlQRV9BQ0NFU1NPUlkQAypPCgpXZWFwb25UeXBlEhQKEFdFQVBPTl9U",
+            "WVBFX05PTkUQABIVChFXRUFQT05fVFlQRV9TV09SRBABEhQKEFdFQVBPTl9U",
+            "WVBFX1dBTkQQAipGCg5Db25zdW1hYmxlVHlwZRIYChRDT05TVU1BQkxFX1RZ",
+            "UEVfTk9ORRAAEhoKFkNPTlNVTUFCTEVfVFlQRV9QT1RJT04QASoiCgVNc2dJ",
+            "ZBIZChVTX0NPTk5FQ1RFRF9UT19TRVJWRVIQAEIbqgIYR29vZ2xlLlByb3Rv",
+            "YnVmLlByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EntityType), typeof(global::Google.Protobuf.Protocol.EntityState), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.EntityState), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Vector3), global::Google.Protobuf.Protocol.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.TransformInfo), global::Google.Protobuf.Protocol.TransformInfo.Parser, new[]{ "State", "Position", "Rotation", "Scale" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.StatInfo), global::Google.Protobuf.Protocol.StatInfo.Parser, new[]{ "Level", "Hp", "MaxHp", "AtkPower", "Speed", "TotalExp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.EntityInfo), global::Google.Protobuf.Protocol.EntityInfo.Parser, new[]{ "Id", "Name", "Type", "Transform", "Stat" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.GameObjectInfo), global::Google.Protobuf.Protocol.GameObjectInfo.Parser, new[]{ "Id", "Name", "Type", "Transform", "Stat" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_ConnectedToServer), global::Google.Protobuf.Protocol.S_ConnectedToServer.Parser, null, null, null, null, null)
           }));
     }
@@ -62,7 +62,7 @@ namespace Google.Protobuf.Protocol {
 
   }
   #region Enums
-  public enum EntityType {
+  public enum GameObjectType {
     [pbr::OriginalName("NONE")] None = 0,
     [pbr::OriginalName("PLAYER")] Player = 1,
     [pbr::OriginalName("MONSTER")] Monster = 2,
@@ -790,11 +790,11 @@ namespace Google.Protobuf.Protocol {
 
   }
 
-  public sealed partial class EntityInfo : pb::IMessage<EntityInfo> {
-    private static readonly pb::MessageParser<EntityInfo> _parser = new pb::MessageParser<EntityInfo>(() => new EntityInfo());
+  public sealed partial class GameObjectInfo : pb::IMessage<GameObjectInfo> {
+    private static readonly pb::MessageParser<GameObjectInfo> _parser = new pb::MessageParser<GameObjectInfo>(() => new GameObjectInfo());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EntityInfo> Parser { get { return _parser; } }
+    public static pb::MessageParser<GameObjectInfo> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -807,14 +807,14 @@ namespace Google.Protobuf.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntityInfo() {
+    public GameObjectInfo() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntityInfo(EntityInfo other) : this() {
+    public GameObjectInfo(GameObjectInfo other) : this() {
       id_ = other.id_;
       name_ = other.name_;
       type_ = other.type_;
@@ -824,8 +824,8 @@ namespace Google.Protobuf.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntityInfo Clone() {
-      return new EntityInfo(this);
+    public GameObjectInfo Clone() {
+      return new GameObjectInfo(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -852,9 +852,9 @@ namespace Google.Protobuf.Protocol {
 
     /// <summary>Field number for the "type" field.</summary>
     public const int TypeFieldNumber = 3;
-    private global::Google.Protobuf.Protocol.EntityType type_ = global::Google.Protobuf.Protocol.EntityType.None;
+    private global::Google.Protobuf.Protocol.GameObjectType type_ = global::Google.Protobuf.Protocol.GameObjectType.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.Protocol.EntityType Type {
+    public global::Google.Protobuf.Protocol.GameObjectType Type {
       get { return type_; }
       set {
         type_ = value;
@@ -885,11 +885,11 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as EntityInfo);
+      return Equals(other as GameObjectInfo);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EntityInfo other) {
+    public bool Equals(GameObjectInfo other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -909,7 +909,7 @@ namespace Google.Protobuf.Protocol {
       int hash = 1;
       if (Id != 0) hash ^= Id.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (Type != global::Google.Protobuf.Protocol.EntityType.None) hash ^= Type.GetHashCode();
+      if (Type != global::Google.Protobuf.Protocol.GameObjectType.None) hash ^= Type.GetHashCode();
       if (transform_ != null) hash ^= Transform.GetHashCode();
       if (stat_ != null) hash ^= Stat.GetHashCode();
       if (_unknownFields != null) {
@@ -933,7 +933,7 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(18);
         output.WriteString(Name);
       }
-      if (Type != global::Google.Protobuf.Protocol.EntityType.None) {
+      if (Type != global::Google.Protobuf.Protocol.GameObjectType.None) {
         output.WriteRawTag(24);
         output.WriteEnum((int) Type);
       }
@@ -959,7 +959,7 @@ namespace Google.Protobuf.Protocol {
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
-      if (Type != global::Google.Protobuf.Protocol.EntityType.None) {
+      if (Type != global::Google.Protobuf.Protocol.GameObjectType.None) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
       }
       if (transform_ != null) {
@@ -975,7 +975,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EntityInfo other) {
+    public void MergeFrom(GameObjectInfo other) {
       if (other == null) {
         return;
       }
@@ -985,7 +985,7 @@ namespace Google.Protobuf.Protocol {
       if (other.Name.Length != 0) {
         Name = other.Name;
       }
-      if (other.Type != global::Google.Protobuf.Protocol.EntityType.None) {
+      if (other.Type != global::Google.Protobuf.Protocol.GameObjectType.None) {
         Type = other.Type;
       }
       if (other.transform_ != null) {
@@ -1020,7 +1020,7 @@ namespace Google.Protobuf.Protocol {
             break;
           }
           case 24: {
-            Type = (global::Google.Protobuf.Protocol.EntityType) input.ReadEnum();
+            Type = (global::Google.Protobuf.Protocol.GameObjectType) input.ReadEnum();
             break;
           }
           case 34: {
