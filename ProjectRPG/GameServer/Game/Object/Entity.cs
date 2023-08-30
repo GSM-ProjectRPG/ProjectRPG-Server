@@ -5,18 +5,36 @@ namespace ProjectRPG.Game
 {
     public class Entity
     {
-        public EntityInfo Info { get; set; }
-        public GameRoom CurrentRoom { get; set; }
+        public EntityInfo Info { get; set; } = new EntityInfo();
         public int Id { get => Info.Id; set => Info.Id = value; }
 
-        public EntityType Type { get => Info.Type; protected set => Info.Type = value; }
-        public TransformInfo Transform { get => Info.Transform; private set => Info.Transform = value; }
+        public EntityType Type { get; protected set; } = EntityType.None;
+        public TransformInfo Transform { get; private set; } = new TransformInfo();
+        public StatInfo Stat { get; private set; } = new StatInfo();
+
+        public GameRoom CurrentRoom { get; set; }
+
+        public int Hp
+        {
+            get => Stat.Hp;
+            set => Stat.Hp = value;
+        }
+
+        public float Speed
+        {
+            get => Stat.Speed;
+            set => Stat.Speed = value;
+        }
+
+        public EntityState State
+        {
+            get => Transform.State;
+            set => Transform.State = value;
+        }
 
         public Entity()
         {
-            Info = new EntityInfo();
-            Info.Type = EntityType.None;
-            Info.Transform = new TransformInfo();
+
         }
 
         public virtual void Update()
