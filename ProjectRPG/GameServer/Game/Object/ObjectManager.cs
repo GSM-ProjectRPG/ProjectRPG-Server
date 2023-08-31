@@ -29,7 +29,7 @@ namespace ProjectRPG.Game
             }
         }
 
-        public static GameObjectType GetEntityTypeById(int id)
+        public static GameObjectType GetObjectTypeById(int id)
         {
             int type = (id >> 24) & 0x7F;
             return (GameObjectType)type;
