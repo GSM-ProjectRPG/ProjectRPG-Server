@@ -14,7 +14,7 @@ namespace ProjectRPG
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
             IPAddress ipAddr = ipHost.AddressList[0];
-            IPEndPoint endPoint = new IPEndPoint(ipAddr, 9999);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("192.168.1.82"), 9999);
 
             _listener.Init(endPoint, SessionManager.Instance.Generate);
             Console.WriteLine("서버가 실행 중입니다...");

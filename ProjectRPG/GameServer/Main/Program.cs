@@ -12,7 +12,7 @@ namespace ProjectRPG
         private static void Main()
         {
             ConfigManager.LoadConfig();
-            DataManager.LoadData();
+            //DataManager.LoadData();
 
             var server = new ServerService();
             server.Start();
