@@ -32,6 +32,16 @@ namespace ProjectRPG.Game
             set => Transform.State = value;
         }
 
+        public Vector2Int CellPos
+        {
+            get => new Vector2Int((int)Transform.Position.X, (int)Transform.Position.Y);
+            set
+            {
+                Transform.Position.X = value.x;
+                Transform.Position.Y = value.y;
+            }
+        }
+
         public GameObject()
         {
             Info.Type = Type;
