@@ -1,5 +1,4 @@
-﻿using System;
-using Google.Protobuf.Protocol;
+﻿using Google.Protobuf.Protocol;
 
 namespace ProjectRPG.Game
 {
@@ -34,11 +33,11 @@ namespace ProjectRPG.Game
 
         public Vector2Int CellPos
         {
-            get => new Vector2Int((int)Transform.Position.X, (int)Transform.Position.Y);
+            get => new Vector2Int((int)Transform.Position.X, (int)Transform.Position.Z);
             set
             {
                 Transform.Position.X = value.x;
-                Transform.Position.Y = value.y;
+                Transform.Position.Z = value.y;
             }
         }
 
