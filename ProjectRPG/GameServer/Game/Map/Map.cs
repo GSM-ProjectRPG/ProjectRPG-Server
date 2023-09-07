@@ -78,7 +78,7 @@ namespace ProjectRPG.Game
         /// <summary>
         /// GameObject의 위치 이동 검증을 위한 함수
         /// </summary>
-        /// <param name="gameObject">이동 할 GameObject</param>
+        /// <param name="gameObject">이동하는 GameObject</param>
         /// <param name="dest">목적지</param>
         /// <param name="checkObjects">오브젝트(장애물) 확인 여부</param>
         /// <param name="collision">충돌 확인 여부</param>

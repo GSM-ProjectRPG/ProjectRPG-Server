@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+using Google.Protobuf;
+using Google.Protobuf.Protocol;
 using ProjectRPG.Job;
 
 namespace ProjectRPG.Game
@@ -36,9 +39,69 @@ namespace ProjectRPG.Game
             Flush();
         }
 
+        /// <summary>
+        /// 시야 범위 내의 플레이어들에게 Broadcast하는 함수
+        /// </summary>
+        /// <param name="pos">기준 위치</param>
+        /// <param name="packet">보낼 패킷</param>
+        public void Broadcast(Vector2Int pos, IMessage packet)
+        {
+            var zones = GetZonesInRange(pos);
+
+            foreach (var player in zones.SelectMany(z => z.Players))
+            {
+                int dx = player.CellPos.x - pos.x;
+                int dy = player.CellPos.y - pos.y;
+                if (Math.Abs(dx) > VisionCells) continue;
+                if (Math.Abs(dy) > VisionCells) continue;
+                player.Session.Send(packet);
+            }
+        }
+
+        /// <summary>
+        /// GameRoom 입장 함수
+        /// </summary>
+        /// <param name="gameObject">입장할 GameObject</param>
+        /// <param name="isRandomPos"></param>
         public void EnterGame(GameObject gameObject, bool isRandomPos)
         {
+            if (gameObject == null) return;
 
+            var type = ObjectManager.GetObjectTypeById(gameObject.Id);
+            if (type == GameObjectType.Player)
+            {
+                var player = (Player)gameObject;
+                _players.Add(gameObject.Id, player);
+                player.CurrentRoom = this;
+                
+                GetZone(player.CellPos).Players.Add(player);
+                Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
+
+                // 본인에게 정보 전송
+                {
+                    var enterGamePacket = new S_EnterGame();
+                    enterGamePacket.Player = player.Info;
+                    player.Session.Send(enterGamePacket);
+                    player.Vision.Update();
+                }
+            }
+            else if (type == GameObjectType.Monster)
+            {
+                var monster = (Monster)gameObject;
+                _monsters.Add(gameObject.Id, monster);
+                monster.CurrentRoom = this;
+
+                GetZone(monster.CellPos).Monsters.Add(monster);
+                Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
+                monster.Update();
+            }
+
+            // 타인에게 정보 전송
+            {
+                var spawnPacket = new S_Spawn();
+                spawnPacket.Objects.Add(gameObject.Info);
+                Broadcast(gameObject.CellPos, spawnPacket);
+            }
         }
 
         public void LeaveGame(int gameObjectId)
