@@ -49,6 +49,9 @@ namespace ProjectRPG.Game
 
                 Owner.Session.Send(despawnPacket);
             }
+
+            PreviousObjects = currentObjects;
+            Owner.CurrentRoom.PushAfter(100, Update);
         }
 
         /// <summary>
