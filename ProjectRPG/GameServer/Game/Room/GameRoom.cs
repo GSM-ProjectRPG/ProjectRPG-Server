@@ -104,9 +104,43 @@ namespace ProjectRPG.Game
             }
         }
 
+        /// <summary>
+        /// GameRoom 퇴장 함수
+        /// </summary>
+        /// <param name="gameObjectId">퇴장할 GameObject ID</param>
         public void LeaveGame(int gameObjectId)
         {
+            var type = ObjectManager.GetObjectTypeById(gameObjectId);
+            Vector2Int cellPos;
 
+            if (type == GameObjectType.Player)
+            {
+                if (_players.Remove(gameObjectId, out var player) == false)
+                    return;
+
+                cellPos = player.CellPos;
+                Map.ApplyLeave(player);
+                player.CurrentRoom = null;
+
+                // 본인에게 정보 전송
+                var leaveGamePacket = new S_LeaveGame();
+                player.Session.Send(leaveGamePacket);
+            }
+            else if (type == GameObjectType.Monster)
+            {
+                if (_monsters.Remove(gameObjectId, out var monster) == false)
+                    return;
+
+                cellPos = monster.CellPos;
+                Map.ApplyLeave(monster);
+                monster.CurrentRoom = null;
+            }
+            else return;
+
+            // 타인에게 정보 전송
+            var despawnPacket = new S_Despawn();
+            despawnPacket.ObjectIds.Add(gameObjectId);
+            Broadcast(cellPos, despawnPacket);
         }
 
         /// <summary>
