@@ -5,6 +5,7 @@ using ACore;
 using Google.Protobuf.Protocol;
 using ProjectRPG.Game;
 using ProjectRPG.DB;
+using ProjectRPG.Data;
 
 namespace ProjectRPG
 {
@@ -76,6 +77,69 @@ namespace ProjectRPG
                     Send(loginOk);
 
                     ServerState = PlayerServerState.Lobby;
+                }
+            }
+        }
+
+        public void HandleCreatePlayer(C_CreatePlayer createPlayerPacket)
+        {
+            if (ServerState != PlayerServerState.Lobby) return;
+
+            using (var db = new AppDbContext())
+            {
+                var findPlayer = db.Players
+                    .Where(p => p.PlayerName == createPlayerPacket.Name).FirstOrDefault();
+
+                if (findPlayer != null)
+                {
+                    // 이름 중복 시 빈 패킷 반환
+                    Send(new S_CreatePlayer());
+                }
+                else
+                {
+                    // 1레벨 Stat 정보 추출
+                    DataManager.StatDict.TryGetValue(1, out var stat);
+
+                    // DB에 저장
+                    var newPlayerDb = new PlayerDb()
+                    {
+                        PlayerName = createPlayerPacket.Name,
+                        Level = stat.Level,
+                        Hp = stat.Hp,
+                        MaxHp = stat.MaxHp,
+                        AtkPower = stat.AtkPower,
+                        Speed = stat.Speed,
+                        TotalExp = 0,
+                        AccountDbId = AccountDbId
+                    };
+
+                    db.Players.Add(newPlayerDb);
+
+                    bool isCompleted = db.SaveChangesEx();
+                    if (isCompleted == false)
+                        return;
+
+                    // 메모리에도 저장
+                    var lobbyPlayer = new LobbyPlayerInfo()
+                    {
+                        PlayerDbId = newPlayerDb.PlayerDbId,
+                        Name = createPlayerPacket.Name,
+                        Stat = new StatInfo()
+                        {
+                            Level = stat.Level,
+                            Hp = stat.Hp,
+                            MaxHp = stat.MaxHp,
+                            AtkPower = stat.AtkPower,
+                            Speed = stat.Speed,
+                            TotalExp = 0
+                        }
+                    };
+
+                    LobbyPlayers.Add(lobbyPlayer);
+
+                    var newPlayerPacket = new S_CreatePlayer() { Player = new LobbyPlayerInfo() };
+                    newPlayerPacket.Player.MergeFrom(lobbyPlayer);
+                    Send(newPlayerPacket);
                 }
             }
         }
