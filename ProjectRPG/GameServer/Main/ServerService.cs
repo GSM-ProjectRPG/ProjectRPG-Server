@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading;
 using ACore;
+using ProjectRPG.Game;
 
 namespace ProjectRPG
 {
@@ -14,7 +15,7 @@ namespace ProjectRPG
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
             IPAddress ipAddr = ipHost.AddressList[0];
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("192.168.1.82"), 9999);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9999);
 
             _listener.Init(endPoint, SessionManager.Instance.Generate);
             Console.WriteLine("서버가 실행 중입니다...");
@@ -24,6 +25,10 @@ namespace ProjectRPG
                 var t = new Thread(NetworkTask) { Name = nameof(NetworkTask) };
                 t.Start();
             }
+
+            // GameLogicTask
+            Thread.CurrentThread.Name = nameof(GameLogicTask);
+            GameLogicTask();
         }
 
         public void NetworkTask()
@@ -33,6 +38,15 @@ namespace ProjectRPG
                 var sessions = SessionManager.Instance.GetSessions();
                 foreach (ClientSession session in sessions)
                     session.FlushSend();
+                Thread.Sleep(0);
+            }
+        }
+
+        public void GameLogicTask()
+        {
+            while (true)
+            {
+                GameLogic.Instance.Update();
                 Thread.Sleep(0);
             }
         }
