@@ -11,6 +11,18 @@ namespace ProjectRPG
         private int _sessionId = 0;
         private readonly object _lock = new object();
 
+        public int GetBusyScore()
+        {
+            int count = 0;
+
+            lock (_lock)
+            {
+                count = _sessions.Count;
+            }
+
+            return count / 100;
+        }
+
         public List<ClientSession> GetSessions()
         {
             var sessions = new List<ClientSession>();
