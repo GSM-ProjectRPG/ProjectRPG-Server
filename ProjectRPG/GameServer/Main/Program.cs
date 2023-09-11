@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProjectRPG.Data;
+﻿using ProjectRPG.Data;
 
 namespace ProjectRPG
 {
     public class Program
     {
-        private static void Main()
+        private static void Main(string[] args)
         {
             ConfigManager.LoadConfig();
-            DataManager.LoadData();
+            //DataManager.LoadData();
 
-            var server = new ServerService();
+            var server = new ServerService(args[0], args[1]);
             server.Start();
 
             while (true)

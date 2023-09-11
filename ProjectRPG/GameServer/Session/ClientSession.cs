@@ -4,12 +4,16 @@ using System.Net;
 using ACore;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
+using ProjectRPG.Game;
 
 namespace ProjectRPG
 {
-    public class ClientSession : PacketSession
+    public partial class ClientSession : PacketSession
     {
+        public PlayerServerState ServerState { get; private set; } = PlayerServerState.Login;
+
         public int SessionId { get; set; }
+        public Player MyPlayer { get; set; }
 
         private readonly object _lock = new object();
         private List<ArraySegment<byte>> _reserveList = new List<ArraySegment<byte>>();

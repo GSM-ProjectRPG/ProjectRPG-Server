@@ -7,14 +7,21 @@ option csharp_namespace = "Google.Protobuf.Protocol";
 		Enum
 ------------------*/
 
-enum EntityType
+enum PlayerServerState
+{
+	PLAYER_SERVER_STATE_LOGIN = 0;
+	PLAYER_SERVER_STATE_LOBBY = 1;
+	PLAYER_SERVER_STATE_GAME = 2;
+}
+
+enum GameObjectType
 {
 	NONE = 0;
 	PLAYER = 1;
 	MONSTER = 2;
 }
 
-enum EntityState
+enum CreatureState
 {
 	IDLE = 0;
 	MOVE = 1;
@@ -49,6 +56,12 @@ enum ConsumableType
 	CONSUMABLE_TYPE_POTION = 1;
 }
 
+enum AccessoryType
+{
+	ACCESSORY_TYPE_NONE = 0;
+	ACCESSORY_TYPE_KEYRING = 1;
+}
+
 /*--------------------
 		Define
 --------------------*/
@@ -62,9 +75,24 @@ message Vector3
 
 message TransformInfo
 {
-	Vector3 position = 1;
-	Vector3 rotation = 2;
-	Vector3 scale = 3;
+	CreatureState state = 1;
+	Vector3 position = 2;
+	Vector3 rotation = 3;
+	Vector3 scale = 4;
+}
+
+message SkillInfo
+{
+	int32 skillId = 1;
+}
+
+message ItemInfo
+{
+	int32 itemDbId = 1;
+	int32 templateId = 2;
+	int32 count = 3;
+	int32 slot = 4;
+	bool equipped = 5;
 }
 
 message StatInfo
@@ -73,16 +101,24 @@ message StatInfo
 	int32 hp = 2;
 	int32 maxHp = 3;
 	int32 atkPower = 4;
-	int32 speed = 5;
+	float speed = 5;
 	int32 totalExp = 6;
 }
 
-message EntityInfo
+message LobbyPlayerInfo
+{
+	int32 playerDbId = 1;
+	string name = 2;
+	StatInfo stat = 3;
+}
+
+message GameObjectInfo
 {
 	int32 id = 1;
 	string name = 2;
-	EntityType type = 3;
+	GameObjectType type = 3;
 	TransformInfo transform = 4;
+	StatInfo stat = 5;
 }
 
 /*--------------------
@@ -92,6 +128,156 @@ message EntityInfo
 enum MsgId
 {
 	S_CONNECTED_TO_SERVER = 0;
+	C_LOGIN = 1;
+	S_LOGIN = 2;
+	C_CREATE_PLAYER = 3;
+	S_CREATE_PLAYER = 4;
+	C_ENTER_GAME = 5;
+	S_ENTER_GAME = 6;
+	S_LEAVE_GAME = 7;
+	S_SPAWN = 8;
+	S_DESPAWN = 9;
+	C_MOVE = 10;
+	S_MOVE = 11;
+	C_SKILL = 12;
+	S_SKILL = 13;
+	S_CHANGE_HP = 14;
+	S_DIE = 15;
+	S_ITEM_LIST = 16;
+	S_ADD_ITEM = 17;
+	C_EQUIP_ITEM = 18;
+	S_EQUIP_ITEM = 19;
+	S_CHANGE_STAT = 20;
+	C_CHAT = 21;
+	S_CHAT = 22;
+	S_PING = 23;
+	C_PING = 24;
 }
 
-message S_ConnectedToServer { }
+message S_ConnectedToServer
+{
+}
+
+message C_Login
+{
+	string uniqueId = 1;
+}
+
+message S_Login
+{
+	int32 loginOk = 1;
+	repeated LobbyPlayerInfo players = 2;
+}
+
+message C_CreatePlayer
+{
+	string name = 1;
+}
+
+message S_CreatePlayer
+{
+	LobbyPlayerInfo player = 1;
+}
+
+message C_EnterGame
+{
+	string name = 1;
+}
+
+message S_EnterGame
+{
+	GameObjectInfo player = 1;
+}
+
+message S_LeaveGame
+{
+}
+
+message S_Spawn
+{
+	repeated GameObjectInfo objects = 1;
+}
+
+message S_Despawn
+{
+	repeated int32 objectIds = 1;
+}
+
+message C_Move
+{
+	// TODO
+}
+
+message S_Move
+{
+	// TODO
+}
+
+message C_Skill
+{
+	SkillInfo info = 1;
+}
+
+message S_Skill
+{
+	int32 objectId = 1;
+	SkillInfo info = 2;
+}
+
+message S_ChangeHp
+{
+	int32 objectId = 1;
+	int32 hp = 2;
+}
+
+message S_Die
+{
+	int32 objectId = 1;
+	int32 killerId = 2;
+}
+
+message S_ItemList
+{
+	repeated ItemInfo items = 1;
+}
+
+message S_AddItem
+{
+	repeated ItemInfo items = 1;
+}
+
+message C_EquipItem
+{
+	int32 itemDbId = 1;
+	bool equipped = 2;
+}
+
+message S_EquipItem
+{
+	int32 itemDbId = 1;
+	bool equipped = 2;
+}
+
+message S_ChangeStat
+{
+	StatInfo stat = 1;
+}
+
+message C_Chat
+{
+	string content = 1;
+}
+
+message S_Chat
+{
+	int32 objectId = 1;
+	string content = 2;
+}
+
+message S_Ping
+{
+}
+
+message C_Ping
+{
+}
