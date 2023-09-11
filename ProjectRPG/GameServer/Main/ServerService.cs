@@ -1,24 +1,40 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using ACore;
 using ProjectRPG.Game;
+using SharedDB;
 
 namespace ProjectRPG
 {
     public class ServerService
     {
+        public readonly string Name;
+        public readonly int Port;
+        public string IpAddress;
+
         private readonly Listener _listener = new Listener();
+
+        public ServerService(string name, string port)
+        {
+            Name = name;
+            Port = int.Parse(port);
+        }
 
         public void Start()
         {
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
             IPAddress ipAddr = ipHost.AddressList[0];
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9999);
+            IPEndPoint endPoint = new IPEndPoint(ipAddr, Port);
+
+            IpAddress = ipAddr.ToString();
 
             _listener.Init(endPoint, SessionManager.Instance.Generate);
-            Console.WriteLine("서버가 실행 중입니다...");
+            Console.WriteLine($"[{Name}] server is running on {IpAddress}:{Port}");
+
+            StartServerInfoTask();
 
             // NetworkTask
             {
@@ -49,6 +65,40 @@ namespace ProjectRPG
                 GameLogic.Instance.Update();
                 Thread.Sleep(0);
             }
+        }
+
+        private void StartServerInfoTask()
+        {
+            var timer = new System.Timers.Timer();
+            timer.AutoReset = true;
+            timer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) =>
+            {
+                using (var shared = new SharedDbContext())
+                {
+                    var serverDb = shared.Servers.Where(s => s.Name == Name).FirstOrDefault();
+                    if (serverDb != null)
+                    {
+                        serverDb.IpAddress = IpAddress;
+                        serverDb.Port = Port;
+                        serverDb.BusyScore = SessionManager.Instance.GetBusyScore();
+                        shared.SaveChangesEx();
+                    }
+                    else
+                    {
+                        serverDb = new ServerDb()
+                        {
+                            Name = this.Name,
+                            IpAddress = this.IpAddress,
+                            Port = this.Port,
+                            BusyScore = SessionManager.Instance.GetBusyScore()
+                        };
+                        shared.Servers.Add(serverDb);
+                        shared.SaveChangesEx();
+                    }
+                }
+            });
+            timer.Interval = 10 * 1000;
+            timer.Start();
         }
     }
 }

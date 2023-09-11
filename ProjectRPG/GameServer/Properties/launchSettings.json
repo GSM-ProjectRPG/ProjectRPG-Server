@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GameServer": {
+      "commandName": "Project",
+      "commandLineArgs": "Persian 9999"
+    }
+  }
+}
