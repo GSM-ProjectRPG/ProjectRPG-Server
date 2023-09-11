@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectRPG.Job;
+using GameServer.Job;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public partial class GameRoom : JobSerializer
     {

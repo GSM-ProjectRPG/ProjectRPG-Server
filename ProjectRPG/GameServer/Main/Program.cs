@@ -1,6 +1,6 @@
-﻿using ProjectRPG.Data;
+﻿using GameServer.Data;
 
-namespace ProjectRPG
+namespace GameServer
 {
     public class Program
     {

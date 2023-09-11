@@ -1,6 +1,6 @@
 ﻿using Google.Protobuf.Protocol;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public class GameObject
     {

@@ -1,4 +1,4 @@
-﻿namespace ProjectRPG.Game
+﻿namespace GameServer.Game
 {
     public struct Pos
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ProjectRPG.Data;
+using GameServer.Data;
 
-namespace ProjectRPG.DB
+namespace GameServer.DB
 {
     public class AppDbContext : DbContext
     {

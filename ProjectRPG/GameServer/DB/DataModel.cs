@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProjectRPG.DB
+namespace GameServer.DB
 {
     [Table("Account")]
     public class AccountDb

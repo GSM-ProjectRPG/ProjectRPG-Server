@@ -1,8 +1,8 @@
 ﻿using Google.Protobuf.Protocol;
-using ProjectRPG.Data;
-using ProjectRPG.DB;
+using GameServer.Data;
+using GameServer.DB;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public class Item
     {

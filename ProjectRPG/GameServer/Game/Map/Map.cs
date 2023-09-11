@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Google.Protobuf.Protocol;
 using ACore;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public class Map
     {

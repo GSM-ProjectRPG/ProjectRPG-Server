@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ProjectRPG.Data
+namespace GameServer.Data
 {
     [Serializable]
     public class ServerConfig

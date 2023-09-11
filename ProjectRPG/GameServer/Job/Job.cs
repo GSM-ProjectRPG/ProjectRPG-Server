@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectRPG.Job
+namespace GameServer.Job
 {
     public abstract class BaseJob
     {

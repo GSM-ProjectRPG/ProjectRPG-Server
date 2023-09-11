@@ -3,10 +3,10 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using ACore;
-using ProjectRPG.Game;
+using GameServer.Game;
 using SharedDB;
 
-namespace ProjectRPG
+namespace GameServer
 {
     public class ServerService
     {

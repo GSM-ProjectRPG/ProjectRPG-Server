@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ACore;
 using Google.Protobuf.Protocol;
-using ProjectRPG.Game;
-using ProjectRPG.DB;
-using ProjectRPG.Data;
+using GameServer.Game;
+using GameServer.DB;
+using GameServer.Data;
 
-namespace ProjectRPG
+namespace GameServer
 {
     public partial class ClientSession : PacketSession
     {

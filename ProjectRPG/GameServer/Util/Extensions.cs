@@ -1,7 +1,7 @@
-﻿using ProjectRPG.DB;
+﻿using GameServer.DB;
 using SharedDB;
 
-namespace ProjectRPG
+namespace GameServer
 {
     public static class Extensions
     {

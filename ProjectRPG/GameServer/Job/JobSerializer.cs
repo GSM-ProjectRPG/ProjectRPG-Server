@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProjectRPG.Job
+namespace GameServer.Job
 {
     public class JobSerializer
     {

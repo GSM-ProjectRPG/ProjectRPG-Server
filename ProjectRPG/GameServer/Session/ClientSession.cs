@@ -4,9 +4,9 @@ using System.Net;
 using ACore;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
-using ProjectRPG.Game;
+using GameServer.Game;
 
-namespace ProjectRPG
+namespace GameServer
 {
     public partial class ClientSession : PacketSession
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public class Zone
     {

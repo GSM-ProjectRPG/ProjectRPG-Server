@@ -3,9 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
-using ProjectRPG.Job;
+using GameServer.Job;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public partial class GameRoom : JobSerializer
     {

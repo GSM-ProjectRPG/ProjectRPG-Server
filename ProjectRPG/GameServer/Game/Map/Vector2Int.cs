@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public struct Vector2Int
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
 
-namespace ProjectRPG.Data
+namespace GameServer.Data
 {
     public interface ILoader<Key, Value>
     {

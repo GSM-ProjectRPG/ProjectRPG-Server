@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public class Inventory
     {

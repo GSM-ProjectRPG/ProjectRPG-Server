@@ -1,9 +1,9 @@
 ﻿using System;
 using Google.Protobuf.Protocol;
-using ProjectRPG.Data;
-using ProjectRPG.Job;
+using GameServer.Data;
+using GameServer.Job;
 
-namespace ProjectRPG.Game
+namespace GameServer.Game
 {
     public class Monster : GameObject
     {

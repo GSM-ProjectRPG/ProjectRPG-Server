@@ -1,7 +1,7 @@
 ﻿using System;
 using ACore;
 
-namespace ProjectRPG.Job
+namespace GameServer.Job
 {
     struct JobTimerElem : IComparable<JobTimerElem>
     {
