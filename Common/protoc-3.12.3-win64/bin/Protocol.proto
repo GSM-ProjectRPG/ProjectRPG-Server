@@ -66,7 +66,7 @@ enum AccessoryType
 		Define
 --------------------*/
 
-message Vector3
+message Vector
 {
 	float x = 1;
 	float y = 2;
@@ -76,9 +76,9 @@ message Vector3
 message TransformInfo
 {
 	CreatureState state = 1;
-	Vector3 position = 2;
-	Vector3 rotation = 3;
-	Vector3 scale = 4;
+	Vector position = 2;
+	Vector rotation = 3;
+	Vector scale = 4;
 }
 
 message SkillInfo
