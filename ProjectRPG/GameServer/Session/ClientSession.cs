@@ -61,7 +61,10 @@ namespace GameServer
 
         public override void OnConnected(EndPoint endPoint)
         {
-
+            Console.WriteLine($"Client OnConnected : {endPoint}");
+            var connectedPacket = new S_ConnectedToServer();
+            Send(connectedPacket);
+            // TODO : Ping
         }
 
         public override void OnDisconnected(EndPoint endPoint)
@@ -71,7 +74,7 @@ namespace GameServer
 
         public override void OnRecvPacket(ArraySegment<byte> buffer)
         {
-
+            PacketManager.Instance.OnRecvPacket(this, buffer);
         }
 
         public override void OnSend(int numOfBytes)

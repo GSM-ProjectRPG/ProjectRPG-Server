@@ -18,10 +18,10 @@ namespace GameServer.Game
                 room.Update();
         }
 
-        public GameRoom AddRoom()
+        public GameRoom AddRoom(int mapId)
         {
             var room = new GameRoom();
-            // TODO : Init GameRoom
+            room.Push(room.Init, mapId, 1);
 
             room.RoomId = _roomId;
             _rooms.Add(_roomId, room);

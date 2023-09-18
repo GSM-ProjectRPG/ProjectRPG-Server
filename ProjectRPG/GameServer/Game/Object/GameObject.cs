@@ -45,6 +45,9 @@ namespace GameServer.Game
         {
             Info.Type = Type;
             Info.Transform = Transform;
+            Info.Transform.Position = new Vector();
+            Info.Transform.Rotation = new Vector();
+            Info.Transform.Scale = new Vector() { X = 1, Y = 1, Z = 1 };
             Info.Stat = Stat;
         }
 

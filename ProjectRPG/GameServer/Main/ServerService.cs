@@ -24,6 +24,8 @@ namespace GameServer
 
         public void Start()
         {
+            GameLogic.Instance.Push(() => { GameLogic.Instance.AddRoom(0); });
+
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
             IPAddress ipAddr = ipHost.AddressList[0];
