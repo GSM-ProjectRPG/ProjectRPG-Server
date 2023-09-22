@@ -16,6 +16,7 @@ namespace GameServer.Game
         public int SizeX { get => MaxX - MinX + 1; }
         public int SizeY { get => MaxY - MinY + 1; }
 
+        private int[,] _map;
         private bool[,] _collision;
         private GameObject[,] _objects;
 
@@ -154,16 +155,21 @@ namespace GameServer.Game
             MaxY = int.Parse(reader.ReadLine());
 
             int xCount = MaxX - MinX + 1;
-            int yCount = MaxY - MinY + 1;
-            _collision = new bool[yCount, xCount];
-            _objects = new GameObject[yCount, xCount];
+            int zCount = MaxY - MinY + 1;
+            _map = new int[zCount, xCount];
+            _collision = new bool[zCount, xCount];
+            _objects = new GameObject[zCount, xCount];
 
-            for (int y = 0; y < yCount; y++)
+            for (int z = 0; z < zCount; z++)
             {
-                string line = reader.ReadLine();
+                string[] line = reader.ReadLine().Split(" ");
                 for (int x = 0; x < xCount; x++)
                 {
-                    _collision[y, x] = line[x] == '1';
+                    int cellData = int.Parse(line[x]);
+                    int height = cellData & 0x7F;
+                    bool collision = cellData >> 8 == 1;
+                    _map[z, x] = height;
+                    _collision[z, x] = collision;
                 }
             }
         }
