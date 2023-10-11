@@ -1,0 +1,4 @@
+{
+	"dataPath": "../../../../../../ProjectRPG-Client/Assets/ProjectRPG/Resources/Data",
+	"connectionString": "Data Source=(localdb)\\ProjectModels;Initial Catalog=ProjectRPG_GameDB;"
+}
