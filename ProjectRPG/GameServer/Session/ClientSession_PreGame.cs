@@ -100,10 +100,14 @@ namespace GameServer
                     // 1레벨 Stat 정보 추출
                     DataManager.StatDict.TryGetValue(1, out var stat);
 
+                    // 커스터마이즈 정보 저장
+                    int customizeInfo = createPlayerPacket.BodyId << 8 | createPlayerPacket.FaceId;
+
                     // DB에 저장
                     var newPlayerDb = new PlayerDb()
                     {
                         PlayerName = createPlayerPacket.Name,
+                        CustomizeInfo = customizeInfo,
                         Level = stat.Level,
                         Hp = stat.Hp,
                         MaxHp = stat.MaxHp,
@@ -124,6 +128,7 @@ namespace GameServer
                     {
                         PlayerDbId = newPlayerDb.PlayerDbId,
                         Name = createPlayerPacket.Name,
+                        CustomizeInfo = customizeInfo,
                         Stat = new StatInfo()
                         {
                             Level = stat.Level,
@@ -154,6 +159,7 @@ namespace GameServer
             MyPlayer = ObjectManager.Instance.Add<Player>();
             MyPlayer.PlayerDbId = playerInfo.PlayerDbId;
             MyPlayer.Info.Name = playerInfo.Name;
+            MyPlayer.CustomizeInfo = playerInfo.CustomizeInfo;
             MyPlayer.Info.Transform.State = CreatureState.Idle;
             MyPlayer.Stat.MergeFrom(playerInfo.Stat);
             MyPlayer.Session = this;
