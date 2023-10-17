@@ -110,6 +110,7 @@ message LobbyPlayerInfo
 	int32 playerDbId = 1;
 	string name = 2;
 	StatInfo stat = 3;
+	int32 customizeInfo = 4;
 }
 
 message GameObjectInfo
@@ -172,6 +173,8 @@ message S_Login
 message C_CreatePlayer
 {
 	string name = 1;
+	int32 bodyId = 2;
+	int32 faceId = 3;
 }
 
 message S_CreatePlayer
