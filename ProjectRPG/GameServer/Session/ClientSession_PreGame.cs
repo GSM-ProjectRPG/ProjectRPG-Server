@@ -39,6 +39,7 @@ namespace GameServer
                         var lobbyPlayer = new LobbyPlayerInfo()
                         {
                             PlayerDbId = playerDb.PlayerDbId,
+                            CustomizeInfo = playerDb.CustomizeInfo,
                             Name = playerDb.PlayerName,
                             Stat = new StatInfo()
                             {
