@@ -120,6 +120,7 @@ message GameObjectInfo
 	GameObjectType type = 3;
 	TransformInfo transform = 4;
 	StatInfo stat = 5;
+	int32 CustomizeInfo = 6;
 }
 
 /*--------------------
