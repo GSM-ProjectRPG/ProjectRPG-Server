@@ -160,7 +160,7 @@ namespace GameServer
             MyPlayer = ObjectManager.Instance.Add<Player>();
             MyPlayer.PlayerDbId = playerInfo.PlayerDbId;
             MyPlayer.Info.Name = playerInfo.Name;
-            MyPlayer.CustomizeInfo = playerInfo.CustomizeInfo;
+            MyPlayer.Info.CustomizeInfo = playerInfo.CustomizeInfo;
             MyPlayer.Info.Transform.State = CreatureState.Idle;
             MyPlayer.Stat.MergeFrom(playerInfo.Stat);
             MyPlayer.Session = this;
