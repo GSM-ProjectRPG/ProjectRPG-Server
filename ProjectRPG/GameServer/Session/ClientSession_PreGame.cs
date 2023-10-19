@@ -6,6 +6,7 @@ using Google.Protobuf.Protocol;
 using GameServer.Game;
 using GameServer.DB;
 using GameServer.Data;
+using SharedDB;
 
 namespace GameServer
 {
@@ -20,11 +21,24 @@ namespace GameServer
 
             LobbyPlayers.Clear();
 
+            // SharedDB Token을 활용해 검사
+            using (var shared = new SharedDbContext())
+            {
+                var token = shared.Tokens.Where(t => t.Token == loginPacket.Token).FirstOrDefault();
+
+                if (token == null)
+                {
+                    var loginOk = new S_Login() { LoginOk = 0 };
+                    Send(loginOk);
+                    return;
+                }
+            }
+
             using (var db = new AppDbContext())
             {
                 var findAccount = db.Accounts
                     .Include(a => a.Players)
-                    .Where(a => a.AccountName == loginPacket.UniqueId)
+                    .Where(a => a.AccountName == loginPacket.AccountName)
                     .FirstOrDefault();
 
                 if (findAccount != null)
@@ -65,7 +79,7 @@ namespace GameServer
                 }
                 else
                 {
-                    var newAccount = new AccountDb() { AccountName = loginPacket.UniqueId };
+                    var newAccount = new AccountDb() { AccountName = loginPacket.AccountName };
                     db.Accounts.Add(newAccount);
                     bool success = db.SaveChangesEx();
                     if (success == false)

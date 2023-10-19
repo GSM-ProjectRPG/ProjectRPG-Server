@@ -25,9 +25,9 @@ namespace AccountServer.Controllers
         [Route("create")]
         public CreateAccountPacketRes CreateAccount([FromBody] CreateAccountPacketReq req)
         {
-            CreateAccountPacketRes res = new CreateAccountPacketRes();
+            var res = new CreateAccountPacketRes();
 
-            AccountDb account = _context.Accounts
+            var account = _context.Accounts
                                     .AsNoTracking()
                                     .Where(a => a.AccountName == req.AccountName)
                                     .FirstOrDefault();
@@ -55,9 +55,9 @@ namespace AccountServer.Controllers
         [Route("login")]
         public LoginAccountPacketRes LoginAccount([FromBody] LoginAccountPacketReq req)
         {
-            LoginAccountPacketRes res = new LoginAccountPacketRes();
+            var res = new LoginAccountPacketRes();
 
-            AccountDb account = _context.Accounts
+            var account = _context.Accounts
                 .AsNoTracking()
                 .Where(a => a.AccountName == req.AccountName && a.Password == req.Password)
                 .FirstOrDefault();
@@ -71,10 +71,10 @@ namespace AccountServer.Controllers
                 res.LoginOk = true;
 
                 // 토큰 발급
-                DateTime expired = DateTime.UtcNow;
+                var expired = DateTime.UtcNow;
                 expired.AddSeconds(600);
 
-                TokenDb tokenDb = _shared.Tokens.Where(t => t.AccountDbId == account.AccountDbId).FirstOrDefault();
+                var tokenDb = _shared.Tokens.Where(t => t.AccountDbId == account.AccountDbId).FirstOrDefault();
                 if (tokenDb != null)
                 {
                     tokenDb.Token = new Random().Next(Int32.MinValue, Int32.MaxValue);
@@ -93,11 +93,11 @@ namespace AccountServer.Controllers
                     _shared.SaveChangesEx();
                 }
 
-                res.AccountId = account.AccountDbId;
+                res.AccountName = account.AccountName;
                 res.Token = tokenDb.Token;
                 res.ServerList = new List<ServerInfo>();
 
-                foreach (ServerDb serverDb in _shared.Servers)
+                foreach (var serverDb in _shared.Servers)
                 {
                     res.ServerList.Add(new ServerInfo()
                     {

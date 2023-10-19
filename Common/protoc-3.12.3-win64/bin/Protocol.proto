@@ -162,7 +162,8 @@ message S_ConnectedToServer
 
 message C_Login
 {
-	string uniqueId = 1;
+	string accountName = 1;
+	int32 token = 2;
 }
 
 message S_Login
