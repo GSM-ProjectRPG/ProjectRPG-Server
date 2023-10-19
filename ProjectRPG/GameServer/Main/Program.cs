@@ -11,11 +11,6 @@ namespace GameServer
 
             var server = new ServerService(args[0], args[1]);
             server.Start();
-
-            while (true)
-            {
-
-            }
         }
     }
 }
