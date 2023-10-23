@@ -20,6 +20,15 @@ namespace GameServer
         private int _reservedSendBytes = 0;
         private long _lastSendTick = 0;
 
+        public void HandleMove(C_Move movePacket)
+        {
+            if (MyPlayer == null) return;
+            if (MyPlayer.CurrentRoom == null) return;
+
+            var room = MyPlayer.CurrentRoom;
+            room.Push(room.HandleMove, MyPlayer, movePacket);
+        }
+
         #region Network Methods
         public void Send(IMessage packet)
         {
