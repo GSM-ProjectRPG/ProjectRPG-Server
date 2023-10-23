@@ -210,12 +210,13 @@ message S_Despawn
 
 message C_Move
 {
-	// TODO
+	Vector inputVector = 1;
 }
 
 message S_Move
 {
-	// TODO
+	int32 objectId = 1;
+	Vector position = 2;
 }
 
 message C_Skill
