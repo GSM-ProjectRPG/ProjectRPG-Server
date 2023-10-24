@@ -11,7 +11,6 @@ namespace GameServer.Game
             // TOOD: Collision Check
 
             player.InputVector = inputPacket.InputVector;
-            player.Move();
         }
     }
 }

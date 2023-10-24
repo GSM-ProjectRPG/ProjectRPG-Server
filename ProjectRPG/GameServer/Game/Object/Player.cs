@@ -18,13 +18,23 @@ namespace GameServer.Game
             Type = GameObjectType.Player;
             Vision = new VisionField(this);
 
-            Speed = 1f;
+            Speed = 2f;
+        }
+
+        public override void Update()
+        {
+            Move();
+
+            CurrentRoom.PushAfter(200, Update);
         }
 
         public void Move()
         {
-            Transform.Position.X += Speed * InputVector.X * 0.02f;
-            Transform.Position.Z += Speed * InputVector.Z * 0.02f;
+            if (InputVector.X == 0 && InputVector.Z == 0)
+                return;
+
+            Transform.Position.X += Speed * InputVector.X * 0.05f;
+            Transform.Position.Z += Speed * InputVector.Z * 0.05f;
 
             var movePacket = new S_Move()
             {
@@ -33,8 +43,6 @@ namespace GameServer.Game
             };
             CurrentRoom.Broadcast(CellPos, movePacket);
             Console.WriteLine($"{movePacket.Position.X} {movePacket.Position.Z}");
-            if (InputVector.X != 0 || InputVector.Z != 0)
-                CurrentRoom.PushAfter(25, Move);
         }
 
         public override void OnDead(GameObject killer)
