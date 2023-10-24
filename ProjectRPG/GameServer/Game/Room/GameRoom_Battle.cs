@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Google.Protobuf.Protocol;
 using GameServer.Job;
 
 namespace GameServer.Game
 {
     public partial class GameRoom : JobSerializer
     {
+        public void HandleMove(Player player, C_Move inputPacket)
+        {
+            // TOOD: Collision Check
 
+            player.InputVector = inputPacket.InputVector;
+        }
     }
 }

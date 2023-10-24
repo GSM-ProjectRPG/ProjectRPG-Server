@@ -88,6 +88,7 @@ namespace GameServer.Game
                     enterGamePacket.Player = player.Info;
                     player.Session.Send(enterGamePacket);
                     player.Vision.Update();
+                    player.Update();
                 }
             }
             else if (type == GameObjectType.Monster)

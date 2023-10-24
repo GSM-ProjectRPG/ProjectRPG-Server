@@ -28,7 +28,9 @@ public class PacketHandler
 
     public static void C_MoveHandler(PacketSession session, IMessage packet)
     {
-
+        var moveInputPacket = (C_Move)packet;
+        var clientSession = (ClientSession)session;
+        clientSession.HandleMove(moveInputPacket);
     }
 
     public static void C_SkillHandler(PacketSession session, IMessage packet)
