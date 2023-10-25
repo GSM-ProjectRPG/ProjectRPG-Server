@@ -31,16 +31,11 @@ namespace GameServer
 
         public void HandleChat(C_Chat chatPacket)
         {
+            if (MyPlayer.CurrentRoom == null) return;
+            if(chatPacket.Content == "") return;
+            
             var room = MyPlayer.CurrentRoom;
-            room.Push(() =>
-            {
-                S_Chat newChat = new S_Chat
-                {
-                    ObjectId = MyPlayer.Id,
-                    Content = chatPacket.Content
-                };
-                room.Broadcast(MyPlayer.CellPos, newChat);
-            });
+            room.Push(room.HandleChat, MyPlayer, chatPacket);
         }
 
         #region Network Methods

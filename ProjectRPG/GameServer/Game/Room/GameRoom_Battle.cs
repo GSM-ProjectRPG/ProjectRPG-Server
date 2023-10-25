@@ -12,5 +12,15 @@ namespace GameServer.Game
 
             player.InputVector = inputPacket.InputVector;
         }
+        
+        public void HandleChat(Player player, C_Chat chatPacket)
+        {
+            S_Chat recvdChat = new S_Chat
+            {
+                ObjectId = player.Id,
+                Content = chatPacket.Content
+            };
+            Broadcast(player.CellPos, recvdChat);
+        }
     }
 }
