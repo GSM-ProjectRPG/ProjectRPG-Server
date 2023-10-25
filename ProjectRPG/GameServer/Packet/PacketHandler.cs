@@ -42,10 +42,12 @@ public class PacketHandler
     {
 
     }
-
+    
     public static void C_ChatHandler(PacketSession session, IMessage packet)
     {
-
+        var clientSession = (ClientSession)session;
+        var chatPacket = (C_Chat)packet;
+        clientSession.HandleChat(chatPacket);
     }
 
     public static void C_PingHandler(PacketSession session, IMessage packet)
