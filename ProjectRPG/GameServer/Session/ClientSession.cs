@@ -29,6 +29,20 @@ namespace GameServer
             room.Push(room.HandleMove, MyPlayer, movePacket);
         }
 
+        public void HandleChat(C_Chat chatPacket)
+        {
+            var room = MyPlayer.CurrentRoom;
+            room.Push(() =>
+            {
+                S_Chat newChat = new S_Chat
+                {
+                    ObjectId = MyPlayer.Id,
+                    Content = chatPacket.Content
+                };
+                room.Broadcast(MyPlayer.CellPos, newChat);
+            });
+        }
+
         #region Network Methods
         public void Send(IMessage packet)
         {
