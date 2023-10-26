@@ -128,23 +128,47 @@ namespace GameServer.Game
         {
             if (_skillCoolDownTick == 0)
             {
-                // TODO : Target Check
+                // Target Check
+                if (_target == null || _target.CurrentRoom != CurrentRoom)
+                {
+                    _target = null;
+                    State = CreatureState.Move;
+                    BroadcastMove();
+                    return;
+                }
 
-                // TODO : Skill Check
+                // Skill Check
+                var dir = (_target.CellPos - CellPos);
+                int dist = dir.cellDistFromZero;
+                bool canUseSkill = (dist <= _skillRange && (dir.x == 0 || dir.y == 0));
+                if (canUseSkill == false)
+                {
+                    State = CreatureState.Move;
+                    BroadcastMove();
+                    return;
+                }
 
-                // TODO : Look At Target
-
-                // TODO : Load Skill Data (TEMP)
+                // Load Skill Data (TEMP)
                 DataManager.SkillDict.TryGetValue(1, out Skill skillData);
 
-                // TODO : Take Damage
+                // Take Damage
+                _target.OnDamaged(this, skillData.damage);
 
-                // TODO : Skill Broadcast
+                // Skill Broadcast
+                var skillPacket = new S_Skill()
+                {
+                    ObjectId = Id,
+                    Info = new SkillInfo() { SkillId = skillData.id }
+                };
+                CurrentRoom.Broadcast(CellPos, skillPacket);
 
-                // TODO : CoolDown Logic
+                // CoolDown Logic
                 int coolTick = (int)(1000 * skillData.cooldown);
                 _skillCoolDownTick = Environment.TickCount64 + coolTick;
             }
+
+            if (_skillCoolDownTick > Environment.TickCount64) return;
+            _skillCoolDownTick = 0;
         }
 
         protected virtual void UpdateDead()
