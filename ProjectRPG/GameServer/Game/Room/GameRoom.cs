@@ -33,6 +33,11 @@ namespace GameServer.Game
             for (int y = 0; y < zoneCountY; y++)
                 for (int x = 0; x < zoneCountX; x++)
                     Zones[y, x] = new Zone(y, x);
+
+            // TEMP : Monster Spawn
+            var monster = ObjectManager.Instance.Add<Monster>();
+            monster.Init(0);
+            EnterGame(monster, true);
         }
 
         public void Update()
