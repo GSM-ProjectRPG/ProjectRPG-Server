@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using System;
+using Google.Protobuf.Protocol;
 
 namespace GameServer.Game
 {
@@ -56,7 +57,19 @@ namespace GameServer.Game
 
         }
 
-        public virtual void OnDead(GameObject killer)
+        public virtual void OnDamaged(GameObject attacker, int damage)
+        {
+            if (CurrentRoom == null) return;
+            Hp = Math.Max(Hp - damage, 0);
+
+            var changeHpPacket = new S_ChangeHp() { ObjectId = Id, Hp = Hp };
+            CurrentRoom.Broadcast(CellPos, changeHpPacket);
+
+            if (Hp <= 0)
+                OnDead(attacker);
+        }
+
+        public virtual void OnDead(GameObject attacker)
         {
             if (CurrentRoom == null) return;
 
