@@ -58,7 +58,12 @@ namespace GameServer.Game
             if (_nextSearchTick > Environment.TickCount64) return;
             _nextSearchTick = Environment.TickCount64 + 1000;
 
-            // TODO : Search Target Logic
+            var target = CurrentRoom.FindClosestPlayer(CellPos, _searchCellDist);
+            if (target != null)
+            {
+                _target = target;
+                State = CreatureState.Move;
+            }
         }
 
         private int _skillRange = 1;
