@@ -75,9 +75,42 @@ namespace GameServer.Game
             int moveTick = (int)(1000 / Speed);
             _nextMoveTick = Environment.TickCount64 + moveTick;
 
-            // TODO : Attackable Check
+            if (_target == null || _target.CurrentRoom != CurrentRoom)
+            {
+                _target = null;
+                State = CreatureState.Idle;
+                BroadcastMove();
+                return;
+            }
 
-            // TODO : Move Logic
+            var dir = _target.CellPos - CellPos;
+            int dist = dir.cellDistFromZero;
+            if (dist == 0 || dist > _chaseCellDist)
+            {
+                _target = null;
+                State = CreatureState.Idle;
+                BroadcastMove();
+                return;
+            }
+
+            var path = CurrentRoom.Map.FindPath(CellPos, _target.CellPos, checkObjects: true);
+            if (path.Count < 2 || path.Count > _chaseCellDist)
+            {
+                _target = null;
+                State = CreatureState.Idle;
+                BroadcastMove();
+                return;
+            }
+
+            if (dist <= _skillRange && (dir.x == 0 || dir.y == 0))
+            {
+                _skillCoolDownTick = 0;
+                State = CreatureState.Skill;
+                return;
+            }
+
+            CurrentRoom.Map.ApplyMove(this, path[1]);
+            BroadcastMove();
         }
 
         private void BroadcastMove()
