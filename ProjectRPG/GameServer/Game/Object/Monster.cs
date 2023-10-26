@@ -115,7 +115,12 @@ namespace GameServer.Game
 
         private void BroadcastMove()
         {
-            // TODO : Broadcast Logic
+            var movePacket = new S_Move()
+            {
+                ObjectId = Id,
+                Position = Transform.Position,
+            };
+            CurrentRoom.Broadcast(CellPos, movePacket);
         }
 
         private long _skillCoolDownTick = 0;
