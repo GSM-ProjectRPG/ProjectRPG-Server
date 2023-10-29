@@ -2,6 +2,7 @@
 using Google.Protobuf.Protocol;
 using GameServer.Data;
 using GameServer.Job;
+using GameServer.DB;
 
 namespace GameServer.Game
 {
@@ -189,11 +190,11 @@ namespace GameServer.Game
             var gameObject = killer.GetBase();
             if (gameObject.Type == GameObjectType.Player)
             {
-                var reward = GetRandomReward();
-                if (reward != null)
+                var rewardData = GetRandomReward();
+                if (rewardData != null)
                 {
                     var player = (Player)gameObject;
-                    // TODO : Reward DB Logic
+                    DbTransaction.RewardPlayer(player, rewardData, CurrentRoom);
                 }
             }
         }
@@ -206,7 +207,7 @@ namespace GameServer.Game
             int rand = new Random().Next(0, 101);
 
             int sum = 0;
-            foreach (RewardData rewardData in monsterData.rewards)
+            foreach (var rewardData in monsterData.rewards)
             {
                 sum += rewardData.probability;
 
