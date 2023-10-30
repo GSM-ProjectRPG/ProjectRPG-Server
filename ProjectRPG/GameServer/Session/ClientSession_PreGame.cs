@@ -206,8 +206,8 @@ namespace GameServer
 
             GameLogic.Instance.Push(() =>
             {
-                var gameRoom = GameLogic.Instance.FindRoom(1);
-                gameRoom.Push(gameRoom.EnterGame, MyPlayer, true);
+                var room = GameLogic.Instance.FindRoom(1);
+                room.Push(room.EnterGame, MyPlayer, true);
             });
         }
     }

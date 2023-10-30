@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Google.Protobuf.Protocol;
 using GameServer.Job;
 
@@ -15,12 +17,56 @@ namespace GameServer.Game
 
         public void HandleChat(Player player, C_Chat chatPacket)
         {
-            S_Chat chat = new S_Chat
+            string msg = chatPacket.Content;
+
+            string commend = "";
+            int i = 0;
+            if (msg[0] == '/')
             {
-                ObjectId = player.Id,
-                Content = chatPacket.Content
-            };
-            BroadcastAll(chat);
+                for (i = 1; i < msg.Length; ++i)
+                {
+                    if (msg[i] == ' ')
+                    {
+                        break;
+                    }
+                    commend += msg[i];
+                }
+            }
+            ExecuteChat(player, commend, msg.Substring(i+1));
+        }
+        
+        private void ExecuteChat(Player player, string command, string msg)
+        {
+            if (command == "whisper")
+            {
+                var s = msg.Substring(0, msg.IndexOf(' '));
+                int targetId = 0;
+                foreach (var players in _players.Values)
+                {
+                    if (players.Info.Name == s)
+                    {
+                        targetId = players.Id;
+                    }
+                }
+
+                string content= msg.Substring(msg.IndexOf(' ') + 1);
+                S_WhisperChat wchat = new S_WhisperChat()
+                {
+                    ObjectId = player.Id,
+                    TargetId = targetId,
+                    Content = content
+                };
+                BroadcastAll(wchat);
+            }
+            else if(command == "")
+            {
+                S_Chat chat = new S_Chat
+                {
+                    ObjectId = player.Id,
+                    Content = msg
+                };
+                BroadcastAll(chat);
+            }
         }
     }
 }
