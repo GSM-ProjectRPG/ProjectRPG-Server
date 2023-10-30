@@ -14,7 +14,7 @@ namespace GameServer
     {
         public int AccountDbId { get; private set; }
         public List<LobbyPlayerInfo> LobbyPlayers { get; set; } = new List<LobbyPlayerInfo>();
-
+        
         public void HandleLogin(C_Login loginPacket)
         {
             if (ServerState != PlayerServerState.Login) return;
@@ -206,8 +206,10 @@ namespace GameServer
 
             GameLogic.Instance.Push(() =>
             {
-                var room = GameLogic.Instance.FindRoom(1);
-                room.Push(room.EnterGame, MyPlayer, true);
+                var gameRoom = GameLogic.Instance.FindRoom(1);
+                var chatRoom = GameLogic.Instance.ChatRoom;
+                gameRoom.Push(gameRoom.EnterGame, MyPlayer, true);
+                chatRoom.Push(chatRoom.EnterChat, MyPlayer);
             });
         }
     }
