@@ -207,9 +207,7 @@ namespace GameServer
             GameLogic.Instance.Push(() =>
             {
                 var gameRoom = GameLogic.Instance.FindRoom(1);
-                var chatRoom = GameLogic.Instance.ChatRoom;
                 gameRoom.Push(gameRoom.EnterGame, MyPlayer, true);
-                chatRoom.Push(chatRoom.EnterChat, MyPlayer);
             });
         }
     }

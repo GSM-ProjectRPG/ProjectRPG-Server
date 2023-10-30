@@ -34,8 +34,8 @@ namespace GameServer
             if (MyPlayer.CurrentRoom == null) return;
             if(chatPacket.Content == "") return;
             
-            var chatRoom = GameLogic.Instance.ChatRoom;
-            chatRoom.Push(chatRoom.HandleChat, MyPlayer, chatPacket);
+            var room = MyPlayer.CurrentRoom;
+            room.Push(room.HandleChat, MyPlayer, chatPacket);
         }
 
         #region Network Methods

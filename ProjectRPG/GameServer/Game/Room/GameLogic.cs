@@ -6,7 +6,6 @@ namespace GameServer.Game
     public class GameLogic : JobSerializer
     {
         public static GameLogic Instance { get; } = new GameLogic();
-        public ChatRoom ChatRoom { get; set; } = new ChatRoom();
 
         private Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>();
         private int _roomId = 1;
