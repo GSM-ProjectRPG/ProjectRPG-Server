@@ -150,7 +150,7 @@ namespace GameServer.Game
                 }
 
                 // Load Skill Data (TEMP)
-                DataManager.SkillDict.TryGetValue(1, out Skill skillData);
+                DataManager.SkillDict.TryGetValue(0, out Skill skillData);
 
                 // Take Damage
                 _target.OnDamaged(this, skillData.damage);
