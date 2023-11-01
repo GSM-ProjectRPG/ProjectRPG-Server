@@ -57,8 +57,6 @@ class PacketManager
 		_handler.Add((ushort)MsgId.SChat, PacketHandler.S_ChatHandler);
 		_onRecv.Add((ushort)MsgId.SPing, MakePacket<S_Ping>);
 		_handler.Add((ushort)MsgId.SPing, PacketHandler.S_PingHandler);
-		_onRecv.Add((ushort)MsgId.SWhisperChat, MakePacket<S_WhisperChat>);
-		_handler.Add((ushort)MsgId.SWhisperChat, PacketHandler.S_WhisperChatHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

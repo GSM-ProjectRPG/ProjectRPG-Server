@@ -154,7 +154,6 @@ enum MsgId
 	S_CHAT = 22;
 	S_PING = 23;
 	C_PING = 24;
-	S_WHISPER_CHAT = 26;
 }
 
 message S_ConnectedToServer
@@ -279,13 +278,6 @@ message S_Chat
 {
 	int32 objectId = 1;
 	string content = 2;
-}
-
-message S_WhisperChat
-{
-	int32 objectId = 1;
-	int32 targetId = 2;
-	string content = 3;
 }
 
 message S_Ping

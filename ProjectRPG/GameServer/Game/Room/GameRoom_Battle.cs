@@ -40,23 +40,20 @@ namespace GameServer.Game
             if (command == "whisper")
             {
                 var s = msg.Substring(0, msg.IndexOf(' '));
-                int targetId = 0;
+                string content= msg.Substring(msg.IndexOf(' ') + 1);
                 foreach (var players in _players.Values)
                 {
                     if (players.Info.Name == s)
                     {
-                        targetId = players.Id;
+                        S_Chat schat = new S_Chat
+                        {
+                            ObjectId = players.Id,
+                            Content = content
+                        };
+                        player.Session.Send(schat);
+                        players.Session.Send(schat);
                     }
                 }
-
-                string content= msg.Substring(msg.IndexOf(' ') + 1);
-                S_WhisperChat wchat = new S_WhisperChat()
-                {
-                    ObjectId = player.Id,
-                    TargetId = targetId,
-                    Content = content
-                };
-                BroadcastAll(wchat);
             }
             else if(command == "")
             {
