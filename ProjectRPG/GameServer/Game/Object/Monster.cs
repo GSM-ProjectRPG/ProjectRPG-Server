@@ -25,6 +25,8 @@ namespace GameServer.Game
                 Stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
             }
+
+
         }
 
         private BaseJob _job;
@@ -149,11 +151,11 @@ namespace GameServer.Game
                     return;
                 }
 
-                // Load Skill Data (TEMP)
-                DataManager.SkillDict.TryGetValue(0, out Skill skillData);
+                // Load Skill Data
+                DataManager.SkillDict.TryGetValue(Stat.AtkDelay, out Skill skillData);
 
                 // Take Damage
-                _target.OnDamaged(this, skillData.damage);
+                _target.OnDamaged(this, Stat.AtkPower);
 
                 // Skill Broadcast
                 var skillPacket = new S_Skill()
