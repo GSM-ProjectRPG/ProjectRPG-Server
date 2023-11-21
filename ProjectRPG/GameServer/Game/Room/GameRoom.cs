@@ -19,7 +19,6 @@ namespace GameServer.Game
 
         private Dictionary<int, Player> _players = new Dictionary<int, Player>();
         private Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
-        private Random _rand = new Random();
 
         public void Init(int mapId, int zoneCells)
         {
@@ -72,10 +71,6 @@ namespace GameServer.Game
         public void EnterGame(GameObject gameObject, bool isRandomPos)
         {
             if (gameObject == null) return;
-
-            // TEMP
-            gameObject.Transform.Position.X = _rand.Next(-2, 2);
-            gameObject.Transform.Position.Z = _rand.Next(-2, 2);
 
             var type = ObjectManager.GetObjectTypeById(gameObject.Id);
             if (type == GameObjectType.Player)
