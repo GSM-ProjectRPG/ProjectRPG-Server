@@ -25,8 +25,6 @@ namespace GameServer.Game
                 Stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
             }
-
-
         }
 
         private BaseJob _job;

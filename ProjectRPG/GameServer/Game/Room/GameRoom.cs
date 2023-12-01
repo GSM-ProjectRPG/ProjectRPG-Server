@@ -32,11 +32,6 @@ namespace GameServer.Game
             for (int y = 0; y < zoneCountY; y++)
                 for (int x = 0; x < zoneCountX; x++)
                     Zones[y, x] = new Zone(y, x);
-
-            // TEMP : Monster Spawn
-            var monster = ObjectManager.Instance.Add<Monster>();
-            monster.Init(0);
-            EnterGame(monster, true);
         }
 
         public void Update()
@@ -68,9 +63,11 @@ namespace GameServer.Game
         /// </summary>
         /// <param name="gameObject">입장할 GameObject</param>
         /// <param name="isRandomPos"></param>
-        public void EnterGame(GameObject gameObject, bool isRandomPos)
+        public void EnterGame(GameObject gameObject)
         {
             if (gameObject == null) return;
+
+            ObjectSpawner.Spawn(gameObject);
 
             var type = ObjectManager.GetObjectTypeById(gameObject.Id);
             if (type == GameObjectType.Player)
