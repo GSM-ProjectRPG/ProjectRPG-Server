@@ -21,8 +21,7 @@ namespace GameServer.Game
             else if (type == GameObjectType.Monster)
             {
                 var monster = (Monster)go;
-                DataManager.MonsterDict.TryGetValue(monster.TemplateId, out var monsterData);
-                DataManager.SpawnDict.TryGetValue(monsterData.stat.Level, out var spawnData);
+                DataManager.SpawnDict.TryGetValue(monster.Stat.Level, out var spawnData);
                 go.Transform.Position = GetRandomPosInArea(spawnData);
             }
         }

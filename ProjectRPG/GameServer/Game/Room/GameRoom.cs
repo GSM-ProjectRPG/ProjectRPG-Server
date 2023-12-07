@@ -9,7 +9,7 @@ namespace GameServer.Game
 {
     public partial class GameRoom : JobSerializer
     {
-        public const int VisionCells = 10;
+        public const int VisionCells = 30;
 
         public int RoomId { get; set; }
 
@@ -32,6 +32,10 @@ namespace GameServer.Game
             for (int y = 0; y < zoneCountY; y++)
                 for (int x = 0; x < zoneCountX; x++)
                     Zones[y, x] = new Zone(y, x);
+
+            var slime = ObjectManager.Instance.Add<Monster>();
+            slime.Init(0);
+            EnterGame(slime);
         }
 
         public void Update()

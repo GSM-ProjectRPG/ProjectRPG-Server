@@ -21,6 +21,7 @@ namespace GameServer.Game
 
             if (DataManager.MonsterDict.TryGetValue(TemplateId, out MonsterData monsterData))
             {
+                Info.Name = monsterData.name;
                 Stat.MergeFrom(monsterData.stat);
                 Stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
