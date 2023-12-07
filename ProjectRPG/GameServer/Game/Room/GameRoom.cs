@@ -9,7 +9,7 @@ namespace GameServer.Game
 {
     public partial class GameRoom : JobSerializer
     {
-        public const int VisionCells = 10;
+        public const int VisionCells = 30;
 
         public int RoomId { get; set; }
 
@@ -19,7 +19,6 @@ namespace GameServer.Game
 
         private Dictionary<int, Player> _players = new Dictionary<int, Player>();
         private Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
-        private Random _rand = new Random();
 
         public void Init(int mapId, int zoneCells)
         {
@@ -33,6 +32,10 @@ namespace GameServer.Game
             for (int y = 0; y < zoneCountY; y++)
                 for (int x = 0; x < zoneCountX; x++)
                     Zones[y, x] = new Zone(y, x);
+
+            var slime = ObjectManager.Instance.Add<Monster>();
+            slime.Init(0);
+            EnterGame(slime);
         }
 
         public void Update()
@@ -64,13 +67,11 @@ namespace GameServer.Game
         /// </summary>
         /// <param name="gameObject">입장할 GameObject</param>
         /// <param name="isRandomPos"></param>
-        public void EnterGame(GameObject gameObject, bool isRandomPos)
+        public void EnterGame(GameObject gameObject)
         {
             if (gameObject == null) return;
 
-            // TEMP
-            gameObject.Transform.Position.X = _rand.Next(-2, 2);
-            gameObject.Transform.Position.Z = _rand.Next(-2, 2);
+            ObjectSpawner.Spawn(gameObject);
 
             var type = ObjectManager.GetObjectTypeById(gameObject.Id);
             if (type == GameObjectType.Player)

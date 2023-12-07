@@ -2,6 +2,7 @@
 using Google.Protobuf.Protocol;
 using GameServer.Data;
 using GameServer.Job;
+using GameServer.DB;
 
 namespace GameServer.Game
 {
@@ -20,6 +21,7 @@ namespace GameServer.Game
 
             if (DataManager.MonsterDict.TryGetValue(TemplateId, out MonsterData monsterData))
             {
+                Info.Name = monsterData.name;
                 Stat.MergeFrom(monsterData.stat);
                 Stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
@@ -50,15 +52,20 @@ namespace GameServer.Game
         }
 
         private Player _target;
-        private int _searchCellDist = 10;
-        private int _chaseCellDist = 20;
+        private int _searchCellDist = 5;
+        private int _chaseCellDist = 10;
         private long _nextSearchTick = 0;
         protected virtual void UpdateIdle()
         {
             if (_nextSearchTick > Environment.TickCount64) return;
             _nextSearchTick = Environment.TickCount64 + 1000;
 
-            // TODO : Search Target Logic
+            var target = CurrentRoom.FindClosestPlayer(CellPos, _searchCellDist);
+            if (target != null)
+            {
+                _target = target;
+                State = CreatureState.Move;
+            }
         }
 
         private int _skillRange = 1;
@@ -70,14 +77,52 @@ namespace GameServer.Game
             int moveTick = (int)(1000 / Speed);
             _nextMoveTick = Environment.TickCount64 + moveTick;
 
-            // TODO : Attackable Check
+            if (_target == null || _target.CurrentRoom != CurrentRoom)
+            {
+                _target = null;
+                State = CreatureState.Idle;
+                BroadcastMove();
+                return;
+            }
 
-            // TODO : Move Logic
+            var dir = _target.CellPos - CellPos;
+            int dist = dir.cellDistFromZero;
+            if (dist == 0 || dist > _chaseCellDist)
+            {
+                _target = null;
+                State = CreatureState.Idle;
+                BroadcastMove();
+                return;
+            }
+
+            var path = CurrentRoom.Map.FindPath(CellPos, _target.CellPos, checkObjects: true);
+            if (path.Count < 2 || path.Count > _chaseCellDist)
+            {
+                _target = null;
+                State = CreatureState.Idle;
+                BroadcastMove();
+                return;
+            }
+
+            if (dist <= _skillRange && (dir.x == 0 || dir.y == 0))
+            {
+                _skillCoolDownTick = 0;
+                State = CreatureState.Skill;
+                return;
+            }
+
+            CurrentRoom.Map.ApplyMove(this, path[1]);
+            BroadcastMove();
         }
 
         private void BroadcastMove()
         {
-            // TODO : Broadcast Logic
+            var movePacket = new S_Move()
+            {
+                ObjectId = Id,
+                Position = Transform.Position,
+            };
+            CurrentRoom.Broadcast(CellPos, movePacket);
         }
 
         private long _skillCoolDownTick = 0;
@@ -85,23 +130,47 @@ namespace GameServer.Game
         {
             if (_skillCoolDownTick == 0)
             {
-                // TODO : Target Check
+                // Target Check
+                if (_target == null || _target.CurrentRoom != CurrentRoom)
+                {
+                    _target = null;
+                    State = CreatureState.Move;
+                    BroadcastMove();
+                    return;
+                }
 
-                // TODO : Skill Check
+                // Skill Check
+                var dir = (_target.CellPos - CellPos);
+                int dist = dir.cellDistFromZero;
+                bool canUseSkill = (dist <= _skillRange && (dir.x == 0 || dir.y == 0));
+                if (canUseSkill == false)
+                {
+                    State = CreatureState.Move;
+                    BroadcastMove();
+                    return;
+                }
 
-                // TODO : Look At Target
+                // Load Skill Data
+                DataManager.SkillDict.TryGetValue(Stat.AtkDelay, out Skill skillData);
 
-                // TODO : Load Skill Data (TEMP)
-                DataManager.SkillDict.TryGetValue(1, out Skill skillData);
+                // Take Damage
+                _target.OnDamaged(this, Stat.AtkPower);
 
-                // TODO : Take Damage
+                // Skill Broadcast
+                var skillPacket = new S_Skill()
+                {
+                    ObjectId = Id,
+                    Info = new SkillInfo() { SkillId = skillData.id }
+                };
+                CurrentRoom.Broadcast(CellPos, skillPacket);
 
-                // TODO : Skill Broadcast
-
-                // TODO : CoolDown Logic
+                // CoolDown Logic
                 int coolTick = (int)(1000 * skillData.cooldown);
                 _skillCoolDownTick = Environment.TickCount64 + coolTick;
             }
+
+            if (_skillCoolDownTick > Environment.TickCount64) return;
+            _skillCoolDownTick = 0;
         }
 
         protected virtual void UpdateDead()
@@ -122,11 +191,11 @@ namespace GameServer.Game
             var gameObject = killer.GetBase();
             if (gameObject.Type == GameObjectType.Player)
             {
-                var reward = GetRandomReward();
-                if (reward != null)
+                var rewardData = GetRandomReward();
+                if (rewardData != null)
                 {
                     var player = (Player)gameObject;
-                    // TODO : Reward DB Logic
+                    DbTransaction.RewardPlayer(player, rewardData, CurrentRoom);
                 }
             }
         }
@@ -139,7 +208,7 @@ namespace GameServer.Game
             int rand = new Random().Next(0, 101);
 
             int sum = 0;
-            foreach (RewardData rewardData in monsterData.rewards)
+            foreach (var rewardData in monsterData.rewards)
             {
                 sum += rewardData.probability;
 
