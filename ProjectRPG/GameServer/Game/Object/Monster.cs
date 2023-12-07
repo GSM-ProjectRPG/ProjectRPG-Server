@@ -52,8 +52,8 @@ namespace GameServer.Game
         }
 
         private Player _target;
-        private int _searchCellDist = 10;
-        private int _chaseCellDist = 20;
+        private int _searchCellDist = 5;
+        private int _chaseCellDist = 10;
         private long _nextSearchTick = 0;
         protected virtual void UpdateIdle()
         {
