@@ -14,7 +14,7 @@ namespace GameServer
     {
         public int AccountDbId { get; private set; }
         public List<LobbyPlayerInfo> LobbyPlayers { get; set; } = new List<LobbyPlayerInfo>();
-
+        
         public void HandleLogin(C_Login loginPacket)
         {
             if (ServerState != PlayerServerState.Login) return;

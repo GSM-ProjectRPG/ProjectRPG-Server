@@ -252,5 +252,13 @@ namespace GameServer.Game
 
             return zones.ToList();
         }
+
+        private void BroadcastAll(IMessage packet)
+        {
+            foreach (var player in _players.Values)
+            {
+                player.Session.Send(packet);
+            }
+        }
     }
 }
